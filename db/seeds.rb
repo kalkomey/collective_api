@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+groups = [
+  { name: "Standards", category: "guild", description: "Lorem ipsum" }
+]
+
+groups.map do |g|
+  Group.find_or_create_by(g)
+end
+
+employees = [
+  { name: "Joshua Kappers" },
+  { name: "Ryan Rushing" },
+  { name: "RA Ray" }
+]
+
+employees.map do |e|
+  employee = Employee.find_or_create_by(e);
+
+  if employee.name == "RA Ray"
+    Membership.find_or_create_by({
+      group_id: 1,
+      employee_id: employee.id,
+      coordinator: true
+    })
+  end
+end
