@@ -1,4 +1,4 @@
-describe('EmployeesIndexController', function() {
+describe('GroupsIndexCtrl', function() {
 
 	beforeEach(module('Collective'));
 
@@ -6,7 +6,7 @@ describe('EmployeesIndexController', function() {
 
     beforeEach(inject(function($rootScope, $controller) {
       scope = $rootScope.$new();
-      ctrl = $controller('EmployeesIndexController', {$scope: scope});
+      ctrl = $controller('GroupsIndexCtrl', {$scope: scope});
     }));
 
 	it('should ...', inject(function() {

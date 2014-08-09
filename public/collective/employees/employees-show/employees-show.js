@@ -1,4 +1,8 @@
-angular.module('Collective').controller('EmployeesShowController',function($scope){
-
-
-});
+angular
+  .module('Collective')
+  .controller('EmployeesShowController',
+    function($scope, $stateParams, Employee){
+      Employee.one($stateParams.id).get().then(function(employee){
+        $scope.employee = employee;
+      });
+    });

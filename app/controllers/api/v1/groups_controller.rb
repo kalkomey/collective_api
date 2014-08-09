@@ -1,20 +1,21 @@
 class Api::V1::GroupsController < ApplicationController
-  before_action :set_api_v1_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_api_v1_group, only: [:edit, :update, :destroy]
 
   # GET /api/v1/groups
   # GET /api/v1/groups.json
   def index
-    @api_v1_groups = Api::V1::Group.all
+    @api_v1_groups = Group.all
   end
 
   # GET /api/v1/groups/1
   # GET /api/v1/groups/1.json
   def show
+    @resource = Group.includes(memberships: :employee).find(params[:id])
   end
 
   # GET /api/v1/groups/new
   def new
-    @api_v1_group = Api::V1::Group.new
+    @api_v1_group = Group.new
   end
 
   # GET /api/v1/groups/1/edit
@@ -24,7 +25,7 @@ class Api::V1::GroupsController < ApplicationController
   # POST /api/v1/groups
   # POST /api/v1/groups.json
   def create
-    @api_v1_group = Api::V1::Group.new(api_v1_group_params)
+    @api_v1_group = Group.new(api_v1_group_params)
 
     respond_to do |format|
       if @api_v1_group.save
@@ -61,10 +62,16 @@ class Api::V1::GroupsController < ApplicationController
     end
   end
 
+  def search
+    @api_v1_groups = Group.where(category: params[:category]).all
+    render action: "index"
+    return
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_api_v1_group
-      @api_v1_group = Api::V1::Group.find(params[:id])
+      @api_v1_group = Group.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

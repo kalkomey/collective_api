@@ -15,11 +15,9 @@ employees = [
 employees.map do |e|
   employee = Employee.find_or_create_by(e);
 
-  if employee.name == "RA Ray"
-    Membership.find_or_create_by({
-      group_id: 1,
-      employee_id: employee.id,
-      coordinator: true
-    })
-  end
+  Membership.find_or_create_by({
+    group_id: 1,
+    employee_id: employee.id,
+    coordinator: (employee.name == "RA Ray")
+  })
 end

@@ -1,24 +1,65 @@
-angular.module('Collective', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate']);
+angular.module('Collective', ['ui.bootstrap', 'ui.utils', 'ui.router', 'restangular', 'ngAnimate']);
 
-angular.module('Collective').config(function($stateProvider, $urlRouterProvider) {
+angular
+  .module('Collective')
+  .config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
+    RestangularProvider.setBaseUrl('/api/v1');
+    RestangularProvider.setRequestSuffix('.json');
 
     $stateProvider
-      .state('employees', {
+      .state('home', {
+        url: '/home',
+        templateUrl: 'home/home-index/home-index.html',
+        controller: 'HomeIndexController'
+      })
+      .state('home.employees', {
         url: '/employees',
         views: {
-          "@": {
+          "list@home": {
             templateUrl: 'employees/employees-index/employees-index.html',
             controller: 'EmployeesIndexController'
-          },
-          "show@employees": {
+          }
+        }
+      })
+      .state('home.employees.show', {
+        url: '/:id',
+        views: {
+          "show@home": {
             templateUrl: 'employees/employees-show/employees-show.html',
             controller: 'EmployeesShowController'
           }
         }
-    });
+      })
+      .state('home.guilds', {
+        url: '/guilds',
+        views: {
+          "list@home": {
+            templateUrl: 'groups/groups-index/groups-index.html',
+            controller: 'GroupsIndexController'
+          },
+          "show@home": {
+            templateUrl: 'groups/groups-show/groups-show.html',
+            controller: 'GroupsShowController'
+          }
+        },
+        resolve: {
+          query: function(){
+            return { category: "guild" }
+          }
+        }
+      })
+      .state('home.guilds.show', {
+        url: '/:id',
+        views: {
+          "show@home": {
+            templateUrl: 'groups/groups-show/groups-show.html',
+            controller: 'GroupsShowController'
+          }
+        }
+      });
 
     /* Add New States Above */
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/home/employees');
 
 });
 

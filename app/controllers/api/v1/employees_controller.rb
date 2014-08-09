@@ -1,20 +1,21 @@
 class Api::V1::EmployeesController < ApplicationController
-  before_action :set_api_v1_employee, only: [:show, :edit, :update, :destroy]
+  before_action :set_api_v1_employee, only: [:edit, :update, :destroy]
 
   # GET /api/v1/employees
   # GET /api/v1/employees.json
   def index
-    @api_v1_employees = Api::V1::Employee.all
+    @api_v1_employees = Employee.all
   end
 
   # GET /api/v1/employees/1
   # GET /api/v1/employees/1.json
   def show
+    @resource = Employee.includes(memberships: :group).find(params[:id])
   end
 
   # GET /api/v1/employees/new
   def new
-    @api_v1_employee = Api::V1::Employee.new
+    @api_v1_employee = Employee.new
   end
 
   # GET /api/v1/employees/1/edit
@@ -24,7 +25,7 @@ class Api::V1::EmployeesController < ApplicationController
   # POST /api/v1/employees
   # POST /api/v1/employees.json
   def create
-    @api_v1_employee = Api::V1::Employee.new(api_v1_employee_params)
+    @api_v1_employee = Employee.new(api_v1_employee_params)
 
     respond_to do |format|
       if @api_v1_employee.save
@@ -64,7 +65,7 @@ class Api::V1::EmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_api_v1_employee
-      @api_v1_employee = Api::V1::Employee.find(params[:id])
+      @api_v1_employee = Employee.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,5 +1,5 @@
-<div class="col-md-12">
-  Index
-
-  <div ui-view="show"></div>
-</div>
+<ol class="list-group">
+  <li class="list-group-item" ui-sref-active="active" ng-repeat="employee in employees">
+    <a ui-sref="home.employees.show({ id: employee.id })">{{ employee.name }}</a>
+  </li>
+</ol>

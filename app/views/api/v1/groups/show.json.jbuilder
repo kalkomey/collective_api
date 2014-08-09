@@ -1,1 +1,9 @@
-json.extract! @api_v1_group, :id, :created_at, :updated_at
+json.id        @resource.id
+json.name      @resource.name
+json.category  @resource.category
+
+json.employees @resource.memberships do |membership|
+  json.id          membership.employee.id
+  json.name        membership.employee.name
+  json.coordinator membership.coordinator?
+end
