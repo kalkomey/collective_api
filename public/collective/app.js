@@ -63,7 +63,9 @@ angular
 
 });
 
-angular.module('Collective').run(function($rootScope) {
+angular.module('Collective').run(function($rootScope, $state, $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
 
     $rootScope.safeApply = function(fn) {
         var phase = $rootScope.$$phase;

@@ -1,9 +1,11 @@
-<h1>{{group.name}}</h1>
-<h2>Members</h2>
+<div ng-show="group">
+  <h1>{{group.name}}</h1>
+  <h2>Members</h2>
 
-<ol class="list-group">
-  <li class="list-group-item" ng-repeat="employee in group.employees">
-    <a ui-sref="home.employees.show({ id: employee.id })">{{ employee.name }}</a>
-    <span class="glyphicon glyphicon-tower" ng-if="employee.coordinator"></span>
-  </li>
-</ol>
+  <ol class="list-group">
+    <li class="list-group-item" ng-repeat="employee in group.employees">
+      <a ui-sref="home.employees.show({ id: employee.id })">{{ employee.name }}</a>
+      <span class="glyphicon glyphicon-tower" ng-if="employee.coordinator"></span>
+    </li>
+  </ol>
+</div>

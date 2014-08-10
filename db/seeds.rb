@@ -1,5 +1,6 @@
 groups = [
-  { name: "Standards", category: "guild", description: "Lorem ipsum" }
+  { name: "Standards", category: "guild", description: "Lorem ipsum" },
+  { name: "Angular", category: "guild", description: "Lorem ipsum"   }
 ]
 
 groups.map do |g|
@@ -7,9 +8,12 @@ groups.map do |g|
 end
 
 employees = [
-  { name: "Joshua Kappers" },
   { name: "Ryan Rushing" },
-  { name: "RA Ray" }
+  { name: "RA Ray" },
+  { name: "Jay Sparks" },
+  { name: "Aziz Punjani" },
+  { name: "Joshua Kappers" },
+  { name: "Bradley Griffith" }
 ]
 
 employees.map do |e|
@@ -20,4 +24,12 @@ employees.map do |e|
     employee_id: employee.id,
     coordinator: (employee.name == "RA Ray")
   })
+
+  
+  Membership.find_or_create_by({
+    group_id: 2,
+    employee_id: employee.id,
+    coordinator: ["Joshua Kappers", "Bradley Griffith"].include?(employee.name)
+  })
+
 end
