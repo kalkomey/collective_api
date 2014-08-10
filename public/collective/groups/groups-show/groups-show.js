@@ -7,15 +7,13 @@ angular
 
     Employee.getList().then(function(employees){
       $scope.employees  = employees;
-      $scope.selectable = angular.clone(employees)
-
-      $scope.filterAssociatedEmployees = function(employee){
-        return _.find($scope.employees, function(e){
-          e.name == employee.name
-        });
-      }
+      // $scope.selectable = angular.clone(employees)
+      //
+      // $scope.filterAssociatedEmployees = function(employee){
+      //   return _.find($scope.employees, function(e){
+      //     e.name == employee.name
+      //   });
+      // }
     })
 
   });
-
- 

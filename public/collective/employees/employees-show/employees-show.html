@@ -1,6 +1,12 @@
 <h1>{{employee.name}}</h1>
 <h2>{{employee.title}}</h1>
 
-<div ng-repeat="(category, group) in employee.categorizedGroups()">
-  {{ category }}
+<div ng-repeat="(category, items) in groups">
+  <h3>{{ category | capitalize }}s</h3>
+  <ol class="list-group">
+    <li class="list-group-item" ng-repeat="group in items">
+      <a ui-sref="home.{{category}}s.show({ id: group.id })">{{ group.name}}</a>
+      <span class="glyphicon glyphicon-tower" ng-if="employee.coordinator"></span>
+    </li>
+  </ul>
 </div>
