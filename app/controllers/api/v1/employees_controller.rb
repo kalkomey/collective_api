@@ -4,7 +4,7 @@ class Api::V1::EmployeesController < ApplicationController
   # GET /api/v1/employees
   # GET /api/v1/employees.json
   def index
-    @api_v1_employees = Employee.all
+    @api_v1_employees = Employee.order(:name).all
   end
 
   # GET /api/v1/employees/1
