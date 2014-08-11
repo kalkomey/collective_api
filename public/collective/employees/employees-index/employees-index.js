@@ -30,7 +30,7 @@ angular
 
     // delete an employee completely
     $scope.delete = function(employee) {
-      Employee.delete(employee);
+      employee.remove();
 
       var index = $scope.employees.indexOf(employee);
 

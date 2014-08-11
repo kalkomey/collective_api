@@ -1,7 +1,12 @@
 angular
   .module('Collective')
   .factory('Employee', function(Restangular) {
-    var service = Restangular.service("employees");
+    // TODO(Joshua Kappers) https://github.com/mgonto/restangular/pull/809/files
+
+    var collection = Restangular.all('employees')
+      , service = Restangular.service("employees");
+
+    service["remove"] = _.bind(collection["remove"], collection);
 
     Restangular.extendModel("employees", function(model){
       model.categorizedGroups = function(){
