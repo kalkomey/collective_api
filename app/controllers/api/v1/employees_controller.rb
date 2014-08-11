@@ -7,7 +7,7 @@ class Api::V1::EmployeesController < ApplicationController
 
   def show
     @resource = Employee
-      .includes(memberships: :group)
+      .includes(memberships: { group: :category })
       .find(params[:id])
   end
 

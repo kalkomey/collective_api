@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809155530) do
+ActiveRecord::Schema.define(version: 20140811221157) do
+
+  create_table "categories", force: true do |t|
+    t.string "name"
+  end
 
   create_table "employees", force: true do |t|
     t.string   "name"
@@ -22,11 +26,13 @@ ActiveRecord::Schema.define(version: 20140809155530) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
-    t.string   "category"
     t.string   "description"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "groups", ["category_id"], name: "index_groups_on_category_id", using: :btree
 
   create_table "memberships", force: true do |t|
     t.integer "employee_id"

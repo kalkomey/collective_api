@@ -1,6 +1,6 @@
 json.id        @resource.id
 json.name      @resource.name
-json.category  @resource.category
+json.category  @resource.category.name
 
 json.employees @resource.memberships do |membership|
   json.id          membership.employee.id

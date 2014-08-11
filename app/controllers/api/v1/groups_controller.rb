@@ -6,7 +6,7 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def show
-    @resource = Group.includes(memberships: :employee).find(params[:id])
+    @resource = Group.includes(:category, memberships: :employee).find(params[:id])
   end
 
   def new
@@ -51,7 +51,11 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def search
-    @api_v1_groups = Group.where(category: params[:category]).all
+    @api_v1_groups =
+      Group.includes(:category)
+           .where(categories: { name: params[:category] })
+           .all
+
     render action: "index"
     return
   end
