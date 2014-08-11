@@ -36,10 +36,6 @@ angular
           "list@home": {
             templateUrl: 'groups/groups-index/groups-index.html',
             controller: 'GroupsIndexController'
-          },
-          "show@home": {
-            templateUrl: 'groups/groups-show/groups-show.html',
-            controller: 'GroupsShowController'
           }
         },
         resolve: {

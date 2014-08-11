@@ -30,7 +30,7 @@ class Api::V1::EmployeesController < ApplicationController
     respond_to do |format|
       if @api_v1_employee.save
         format.html { redirect_to @api_v1_employee, notice: 'Employee was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @api_v1_employee }
+        format.json { render action: 'show', status: :created }
       else
         format.html { render action: 'new' }
         format.json { render json: @api_v1_employee.errors, status: :unprocessable_entity }
@@ -70,6 +70,6 @@ class Api::V1::EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def api_v1_employee_params
-      params[:api_v1_employee]
+      params.require(:employee).permit(:name)
     end
 end

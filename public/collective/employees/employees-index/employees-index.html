@@ -1,3 +1,11 @@
+<button ng-if="!employee" ng-click="add()">+ New Employee</button>
+
+<form ng-if="employee" ng-submit="save()">
+  <input type="text" ng-model="employee.name" placaeholder="Name">
+  <button type="submit">Add Employee</button>
+  <button class="cancel" ng-click="cancel()">Cancel</button>
+</form>
+
 <ol class="list-group">
   <li class="list-group-item" ui-sref-active="active" ng-repeat="employee in employees">
     <a ui-sref="home.employees.show({ id: employee.id })">{{ employee.name }}</a>

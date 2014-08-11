@@ -4,5 +4,5 @@ angular
     $scope.navigation = [
       { text: "Employees", sref: "home.employees" },
       { text: "Guilds", sref: "home.guilds" }
-    ]
+    ];
   });
