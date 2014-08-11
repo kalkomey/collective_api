@@ -1,29 +1,21 @@
 class Api::V1::GroupsController < ApplicationController
   before_action :set_api_v1_group, only: [:edit, :update, :destroy]
 
-  # GET /api/v1/groups
-  # GET /api/v1/groups.json
   def index
     @api_v1_groups = Group.all
   end
 
-  # GET /api/v1/groups/1
-  # GET /api/v1/groups/1.json
   def show
     @resource = Group.includes(memberships: :employee).find(params[:id])
   end
 
-  # GET /api/v1/groups/new
   def new
     @api_v1_group = Group.new
   end
 
-  # GET /api/v1/groups/1/edit
   def edit
   end
 
-  # POST /api/v1/groups
-  # POST /api/v1/groups.json
   def create
     @api_v1_group = Group.new(api_v1_group_params)
 
@@ -38,8 +30,6 @@ class Api::V1::GroupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/v1/groups/1
-  # PATCH/PUT /api/v1/groups/1.json
   def update
     respond_to do |format|
       if @api_v1_group.update(api_v1_group_params)
@@ -52,8 +42,6 @@ class Api::V1::GroupsController < ApplicationController
     end
   end
 
-  # DELETE /api/v1/groups/1
-  # DELETE /api/v1/groups/1.json
   def destroy
     @api_v1_group.destroy
     respond_to do |format|
@@ -66,6 +54,10 @@ class Api::V1::GroupsController < ApplicationController
     @api_v1_groups = Group.where(category: params[:category]).all
     render action: "index"
     return
+  end
+
+  def categories
+    @categories = Group.uniq.pluck(:category)
   end
 
   private
