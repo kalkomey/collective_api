@@ -2,7 +2,7 @@ angular
   .module('Collective')
   .controller('HomeIndexController',function($scope){
     $scope.navigation = [
-      { text: "Employees", sref: "home.employees" },
-      { text: "Guilds", sref: "home.guilds" }
+      { text: "People", sref: "home.employees" },
+      { text: "Groups", sref: "home.groups" }
     ];
   });

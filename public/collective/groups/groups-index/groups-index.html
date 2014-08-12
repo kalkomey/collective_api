@@ -1,5 +1,7 @@
+
+
 <ol class="list-group">
   <li class="list-group-item" ui-sref-active="active" ng-repeat="group in groups">
-    <a ui-sref="home.{{ category }}s.show({ id: group.id })">{{ group.name }}</a>
+    <a ui-sref="home.groups.show({ id: group.id })">{{ group.category | capitalize}}: {{ group.name }}</a>
   </li>
 </ol>

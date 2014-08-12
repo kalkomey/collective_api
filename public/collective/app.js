@@ -30,8 +30,8 @@ angular
           }
         }
       })
-      .state('home.guilds', {
-        url: '/guilds',
+      .state('home.groups', {
+        url: '/groups',
         views: {
           "list@home": {
             templateUrl: 'groups/groups-index/groups-index.html',
@@ -40,11 +40,11 @@ angular
         },
         resolve: {
           query: function(){
-            return { category: "guild" }
+            return {}
           }
         }
       })
-      .state('home.guilds.show', {
+      .state('home.groups.show', {
         url: '/:id',
         views: {
           "show@home": {
@@ -55,7 +55,7 @@ angular
       });
 
     /* Add New States Above */
-    $urlRouterProvider.otherwise('/home/employees');
+    $urlRouterProvider.otherwise('/home');
 
 });
 

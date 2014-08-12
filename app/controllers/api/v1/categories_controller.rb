@@ -1,8 +1,8 @@
-class Api::V1::GroupsController < ApplicationController
+class Api::V1::CategoriesController < ApplicationController
   before_action :set_category, only: [:update, :destroy]
 
   def index
-    @resources = Categories.all
+    @resources = Category.all
   end
 
   def create
@@ -28,10 +28,6 @@ class Api::V1::GroupsController < ApplicationController
   def destroy
     @resource.destroy
     head :no_content
-  end
-
-  def categories
-    @categories = Group.uniq.pluck(:category)
   end
 
   private

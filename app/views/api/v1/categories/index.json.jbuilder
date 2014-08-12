@@ -1,1 +1,1 @@
-json.array! @categories
+json.array! @resources

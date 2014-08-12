@@ -13,7 +13,7 @@ angular
 
     // save the new employee
     $scope.save = function() {
-      // create a copy so we don't ...
+      // create a copy so we don't ... ?
       var model = angular.copy($scope.employee);
 
       Employee.post({employee: model});
@@ -29,7 +29,7 @@ angular
     };
 
     // delete an employee completely
-    $scope.delete = function(employee) {
+    $scope.remove = function(employee) {
       employee.remove();
 
       var index = $scope.employees.indexOf(employee);

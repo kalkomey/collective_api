@@ -51,12 +51,16 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def search
-    @api_v1_groups =
-      Group.includes(:category)
-           .where(categories: { name: params[:category] })
-           .all
+    query = Group.includes(:category)
+
+    if params[:category]
+      query = query.where(categories: { name: params[:category] })
+    end
+
+    @api_v1_groups = query.all
 
     render action: "index"
+
     return
   end
 
