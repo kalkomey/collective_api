@@ -7,6 +7,29 @@ angular
     });
 
     Category.getList().then(function(categories){
-      console.log(categories);
+      $scope.categories = categories;
     });
+
+    // add a new group form
+    $scope.add = function() {
+      $scope.group = {};
+      $scope.group.category = $scope.categories[0];
+    };
+
+    // remove the new group form
+    $scope.cancel = function() {
+      delete $scope.group;
+    };
+
+    // save the new group
+    $scope.save = function() {
+      // create a copy so we can get rid of group ASAP
+      var model = angular.copy($scope.group);
+
+      Group.post({name: model.name, category_id: model.category.id, description: ''});
+
+      $scope.groups.push({name: model.name, category: model.category.name});
+
+      delete $scope.group;
+    };
   });
