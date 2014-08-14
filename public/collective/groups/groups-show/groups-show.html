@@ -3,9 +3,9 @@
   <h2>Members</h2>
 
   <ol class="list-group">
-    <li class="list-group-item" ng-repeat="employee in group.employees">
-      <a ui-sref="home.employees.show({ id: employee.id })">{{ employee.name }}</a>
-      <span class="glyphicon glyphicon-tower" ng-if="employee.coordinator"></span>
+    <li class="list-group-item" ng-repeat="person in group.people">
+      <a ui-sref="home.people.show({ id: person.id })">{{ person.name }}</a>
+      <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
     </li>
   </ol>
 </div>

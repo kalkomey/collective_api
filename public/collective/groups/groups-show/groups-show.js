@@ -1,17 +1,17 @@
 angular
   .module('Collective')
-  .controller('GroupsShowController', function($scope, $stateParams, Group, Employee){
+  .controller('GroupsShowController', function($scope, $stateParams, Group, Person){
     Group.one($stateParams.id).get().then(function(group){
       $scope.group = group
     })
 
-    Employee.getList().then(function(employees){
-      $scope.employees  = employees;
-      // $scope.selectable = angular.clone(employees)
+    Person.getList().then(function(people){
+      $scope.people  = people;
+      // $scope.selectable = angular.clone(people)
       //
-      // $scope.filterAssociatedEmployees = function(employee){
-      //   return _.find($scope.employees, function(e){
-      //     e.name == employee.name
+      // $scope.filterAssociatedPeople = function(person){
+      //   return _.find($scope.people, function(e){
+      //     e.name == person.name
       //   });
       // }
     })

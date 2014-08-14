@@ -12,21 +12,21 @@ angular
         templateUrl: 'home/home-index/home-index.html',
         controller: 'HomeIndexController'
       })
-      .state('home.employees', {
-        url: '/employees',
+      .state('home.people', {
+        url: '/people',
         views: {
           "list@home": {
-            templateUrl: 'employees/employees-index/employees-index.html',
-            controller: 'EmployeesIndexController'
+            templateUrl: 'people/people-index/people-index.html',
+            controller: 'PeopleIndexController'
           }
         }
       })
-      .state('home.employees.show', {
+      .state('home.people.show', {
         url: '/:id',
         views: {
           "show@home": {
-            templateUrl: 'employees/employees-show/employees-show.html',
-            controller: 'EmployeesShowController'
+            templateUrl: 'people/people-show/people-show.html',
+            controller: 'PeopleShowController'
           }
         }
       })

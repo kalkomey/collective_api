@@ -1,0 +1,14 @@
+<button ng-if="!person" ng-click="add()">+ New Person</button>
+
+<form ng-if="person" ng-submit="save()">
+  <input type="text" ng-model="person.name" placaeholder="Name" autofocus>
+  <button type="submit">Add Person</button>
+  <button class="cancel" ng-click="cancel()">Cancel</button>
+</form>
+
+<ol class="list-group">
+  <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people">
+    <a ui-sref="home.people.show({ id: person.id })">{{ person.name }}</a>
+    <button ng-click="remove(person)">delete</button>
+  </li>
+</ol>

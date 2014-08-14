@@ -1,6 +1,6 @@
 angular
   .module('Collective')
-  .factory('Employee', function(Restangular) {
+  .factory('Person', function(Restangular) {
     // TODO(Joshua Kappers) https://github.com/mgonto/restangular/pull/809/files
 
     var collection = Restangular.all('employees')

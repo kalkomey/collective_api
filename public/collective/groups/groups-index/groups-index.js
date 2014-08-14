@@ -21,6 +21,16 @@ angular
       delete $scope.group;
     };
 
+    // delete an group completely
+    $scope.remove = function(group) {
+      console.log($scope.groups);
+      group.remove();
+
+      var index = $scope.groups.indexOf(group);
+
+      $scope.groups.splice(index, 1);
+    };
+
     // save the new group
     $scope.save = function() {
       // create a copy so we can get rid of group ASAP

@@ -1,4 +1,4 @@
-describe('EmployeesShowCtrl', function() {
+describe('PeopleShowCtrl', function() {
 
 	beforeEach(module('Collective'));
 
@@ -6,13 +6,13 @@ describe('EmployeesShowCtrl', function() {
 
     beforeEach(inject(function($rootScope, $controller) {
       scope = $rootScope.$new();
-      ctrl = $controller('EmployeesShowCtrl', {$scope: scope});
-    }));	
+      ctrl = $controller('PeopleShowCtrl', {$scope: scope});
+    }));
 
 	it('should ...', inject(function() {
 
 		expect(1).toEqual(1);
-		
+
 	}));
 
 });
