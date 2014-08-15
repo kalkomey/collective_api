@@ -9,50 +9,69 @@ angular
     $stateProvider
       .state('home', {
         url: '/home',
-        templateUrl: 'home/home-index/home-index.html',
-        controller: 'HomeIndexController'
-      })
-      .state('home.people', {
-        url: '/people',
         views: {
-          "list@home": {
+          "@": {
+            templateUrl: 'home/home-index/home-index.html',
+            controller: 'HomeIndexController'
+          },
+          "people@home": {
             templateUrl: 'people/people-index/people-index.html',
             controller: 'PeopleIndexController'
-          }
-        }
-      })
-      .state('home.people.show', {
-        url: '/:id',
-        views: {
-          "show@home": {
-            templateUrl: 'people/people-show/people-show.html',
-            controller: 'PeopleShowController'
-          }
-        }
-      })
-      .state('home.groups', {
-        url: '/groups',
-        views: {
-          "list@home": {
+          },
+          "groups@home": {
             templateUrl: 'groups/groups-index/groups-index.html',
-            controller: 'GroupsIndexController'
-          }
-        },
-        resolve: {
-          query: function(){
-            return {}
+            controller: 'GroupsIndexController',
+            resolve: {
+              query: function(){
+                return {};
+              }
+            }
           }
         }
       })
-      .state('home.groups.show', {
-        url: '/:id',
-        views: {
-          "show@home": {
-            templateUrl: 'groups/groups-show/groups-show.html',
-            controller: 'GroupsShowController'
-          }
-        }
-      });
+      // .state('home.people', {
+      //   url: '/people',
+      //   views: {
+      //     "list@home": {
+      //       templateUrl: 'people/people-index/people-index.html',
+      //       controller: 'PeopleIndexController',
+      //       restrict: 'E'
+      //     }
+      //   }
+      // })
+      // .state('home.people.show', {
+      //   url: '/:id',
+      //   views: {
+      //     "show@home": {
+      //       templateUrl: 'people/people-show/people-show.html',
+      //       controller: 'PeopleShowController'
+      //     }
+      //   }
+      // })
+      // .state('home.groups', {
+      //   url: '/groups',
+      //   views: {
+      //     "list@home": {
+      //       templateUrl: 'groups/groups-index/groups-index.html',
+      //       controller: 'GroupsIndexController'
+      //     }
+      //   },
+      //   resolve: {
+      //     query: function(){
+      //       return {}
+      //     }
+      //   }
+      // })
+      // .state('home.groups.show', {
+      //   url: '/:id',
+      //   views: {
+      //     "show@home": {
+      //       templateUrl: 'groups/groups-show/groups-show.html',
+      //       controller: 'GroupsShowController'
+      //     }
+      //   }
+      // })
+      ;
 
     /* Add New States Above */
     $urlRouterProvider.otherwise('/home');

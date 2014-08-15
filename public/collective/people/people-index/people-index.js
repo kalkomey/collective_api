@@ -4,6 +4,7 @@ angular
 
     Person.getList().then(function(people){
       $scope.people = people;
+      $scope.displayed = [];
     });
 
     // add a new person form
@@ -16,7 +17,7 @@ angular
       // create a copy so we don't ... ?
       var model = angular.copy($scope.person);
 
-      Person.post({person: model});
+      Person.post(model);
 
       $scope.people.push(model);
 
@@ -28,6 +29,13 @@ angular
       delete $scope.person;
     };
 
+    // hide a person panel from the view
+    $scope.hide = function(person) {
+      var index = $scope.displayed.indexOf(person);
+
+      $scope.displayed.splice(index, 1);
+    };
+
     // delete an person completely
     $scope.remove = function(person) {
       person.remove();
@@ -35,5 +43,10 @@ angular
       var index = $scope.people.indexOf(person);
 
       $scope.people.splice(index, 1);
+    };
+
+    // add a person panel to the view
+    $scope.display = function(person) {
+      $scope.displayed.push(person);
     };
   });

@@ -23,7 +23,6 @@ angular
 
     // delete an group completely
     $scope.remove = function(group) {
-      console.log($scope.groups);
       group.remove();
 
       var index = $scope.groups.indexOf(group);

@@ -8,7 +8,12 @@
 
 <ol class="list-group">
   <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people">
-    <a ui-sref="home.people.show({ id: person.id })">{{ person.name }}</a>
+    <button ng-click="display(person)">{{ person.name }}</button>
     <button ng-click="remove(person)">delete</button>
   </li>
 </ol>
+
+<div ng-repeat="person in displayed">
+  {{ person.name }}
+  <button ng-click="hide(person)">hide</button>
+</div>
