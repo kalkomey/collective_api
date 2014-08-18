@@ -8,8 +8,8 @@
 
 <ol class="list-group">
   <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people">
-    <button ng-click="select(person)">{{ person.name }}</button>
-    <button ng-click="remove(person)">delete</button>
+    <button class="btn btn-empty" ng-click="select(person)">{{ person.name }}</button>
+    <button class="btn btn-danger" ng-click="remove(person)">&#x2715;</button>
   </li>
 </ol>
 
