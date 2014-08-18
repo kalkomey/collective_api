@@ -25,6 +25,7 @@ angular
     // add a person panel to the view
     $scope.display = function(person) {
 
+      // don't add duplicate panels
       if ($scope.displayed.indexOf(person) !== -1) {
 
         return;
