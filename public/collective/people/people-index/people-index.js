@@ -1,67 +1,66 @@
 angular
   .module('Collective')
-  .controller('PeopleIndexController', function($scope, Person){
+    .controller('PeopleIndexController', function($scope, Person, Restangular){
 
-    Person
-      .getList()
-      .then(function(people) {
+      Person
+        .getList()
+        .then(function(people) {
+          $scope.people = people;
+          $scope.displayed = [];
+        });
 
-        $scope.people = people;
-        $scope.displayed = [];
-      });
+      // add a new person form
+      $scope.add = function() {
 
-    // add a new person form
-    $scope.add = function() {
+        $scope.person = {};
+      };
 
-      $scope.person = {};
-    };
+      // remove the new person form
+      $scope.cancel = function() {
 
-    // remove the new person form
-    $scope.cancel = function() {
+        delete $scope.person;
+      };
 
-      delete $scope.person;
-    };
+      // add a person panel to the view
+      $scope.display = function(person) {
 
-    // add a person panel to the view
-    $scope.display = function(person) {
+        // don't add duplicate panels
+        if ($scope.displayed.indexOf(person) !== -1) {
 
-      // don't add duplicate panels
-      if ($scope.displayed.indexOf(person) !== -1) {
+          return;
+        }
 
-        return;
-      }
+        $scope.displayed.push(person);
+      };
 
-      $scope.displayed.push(person);
-    };
+      // hide a person panel from the view
+      $scope.hide = function(person) {
 
-    // hide a person panel from the view
-    $scope.hide = function(person) {
+        var index = $scope.displayed.indexOf(person);
 
-      var index = $scope.displayed.indexOf(person);
+        $scope.displayed.splice(index, 1);
+      };
 
-      $scope.displayed.splice(index, 1);
-    };
+      // delete an person completely
+      $scope.remove = function(person) {
 
-    // delete an person completely
-    $scope.remove = function(person) {
+        person.remove();
 
-      person.remove();
+        var index = $scope.people.indexOf(person);
 
-      var index = $scope.people.indexOf(person);
+        $scope.people.splice(index, 1);
+      };
 
-      $scope.people.splice(index, 1);
-    };
+      // save the new person
+      $scope.save = function() {
 
-    // save the new person
-    $scope.save = function() {
+        // create a copy so we can get rid of $scope.person ASAP
+        var model = Restangular.copy($scope.person);
+        var save  = Person.post(model);
 
-      // create a copy so we don't ... ?
-      var model = angular.copy($scope.person);
+        // save.$object is a promise that gets updated when the save is complete
+        $scope.people.push(save.$object);
 
-      Person.post(model);
-
-      $scope.people.push(model);
-
-      delete $scope.person;
-    };
-  });
+        delete $scope.person;
+      };
+    });

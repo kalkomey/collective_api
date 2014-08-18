@@ -1,6 +1,6 @@
 angular
   .module('Collective')
-  .controller('GroupsIndexController',function($scope, Group, Category, query){
+  .controller('GroupsIndexController',function($scope, Restangular, Group, Category, query){
 
     Group
       .customGET("search", query)
@@ -63,8 +63,8 @@ angular
     // save the new group
     $scope.save = function() {
 
-      // create a copy so we can get rid of group ASAP
-      var model = angular.copy($scope.group);
+      // create a copy so we can get rid of $scope.group ASAP
+      var model = Restangular.copy($scope.group);
 
       Group.post({name: model.name, category_id: model.category.id, description: ''});
 

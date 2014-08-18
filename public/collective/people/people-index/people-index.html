@@ -13,7 +13,5 @@
   </li>
 </ol>
 
-<div ng-repeat="person in displayed">
-  {{ person.name }}
-  <button ng-click="hide(person)">hide</button>
+<div ui-view="person" ng-repeat="person in displayed">
 </div>
