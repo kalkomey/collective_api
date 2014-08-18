@@ -2,65 +2,54 @@ angular
   .module('Collective')
     .controller('PeopleIndexController', function($scope, Person, Restangular){
 
-      Person
-        .getList()
-        .then(function(people) {
-          $scope.people = people;
-          $scope.displayed = [];
-        });
+      $scope.people = Person.getList().$object;
 
-      // add a new person form
-      $scope.add = function() {
-
+      /**
+       * Initialize a new person.
+       */
+      $scope.add = function(){
         $scope.person = {};
       };
 
-      // remove the new person form
+      /**
+       * Reset the new person form.
+       */
       $scope.cancel = function() {
-
         delete $scope.person;
       };
 
-      // add a person panel to the view
-      $scope.display = function(person) {
-
-        // don't add duplicate panels
-        if ($scope.displayed.indexOf(person) !== -1) {
-
-          return;
-        }
-
-        $scope.displayed.push(person);
+      /**
+       * Flag a person as selected
+       */
+      $scope.select = function(person) {
+        person.selected = true;
       };
 
-      // hide a person panel from the view
-      $scope.hide = function(person) {
-
-        var index = $scope.displayed.indexOf(person);
-
-        $scope.displayed.splice(index, 1);
+      /**
+       * Flag a person as not selected
+       */
+      $scope.deselect = function(person) {
+        person.selected = false;
       };
 
-      // delete an person completely
+      /**
+       * Delete a person.
+       */
       $scope.remove = function(person) {
-
-        person.remove();
-
-        var index = $scope.people.indexOf(person);
-
-        $scope.people.splice(index, 1);
+        person.remove().then(function(){
+          $scope.people = _.without($scope.people, person);
+        })
       };
 
-      // save the new person
+      /**
+       * Save a person.
+       */
       $scope.save = function() {
-
-        // create a copy so we can get rid of $scope.person ASAP
-        var model = Restangular.copy($scope.person);
-        var save  = Person.post(model);
-
-        // save.$object is a promise that gets updated when the save is complete
-        $scope.people.push(save.$object);
+        var model   = angular.copy($scope.person)
+          , promise = Person.post(model);
 
         delete $scope.person;
+
+        $scope.people.push(promise.$object);
       };
     });

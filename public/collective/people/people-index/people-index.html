@@ -8,10 +8,9 @@
 
 <ol class="list-group">
   <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people">
-    <button ng-click="display(person)">{{ person.name }}</button>
+    <button ng-click="select(person)">{{ person.name }}</button>
     <button ng-click="remove(person)">delete</button>
   </li>
 </ol>
 
-<div ui-view="person" ng-repeat="person in displayed">
-</div>
+<div ui-view="person" ng-repeat="person in people | filter:{ selected: true }"></div>
