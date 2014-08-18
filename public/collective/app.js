@@ -32,7 +32,11 @@ angular
                   return {};
                 }
               }
-            }
+            },
+            "group@home" : {
+              templateUrl: "groups/groups-show/groups-show.html",
+              controller: 'GroupsShowController'
+            },
           }
         })
         // .state('home.people', {

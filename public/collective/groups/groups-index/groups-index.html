@@ -9,12 +9,10 @@
 
 <ol class="list-group">
   <li class="list-group-item" ui-sref-active="active" ng-repeat="group in groups">
-    <button ng-click="display(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
+    <button ng-click="select(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
     <button ng-click="remove(group)">delete</button>
   </li>
 </ol>
 
-<div ng-repeat="group in displayed">
-  {{ group.name }}
-  <button ng-click="hide(group)">hide</button>
+<div ui-view="group" ng-repeat="group in groups | filter: {selected: true}">
 </div>

@@ -1,75 +1,75 @@
 angular
   .module('Collective')
-  .controller('GroupsIndexController',function($scope, Restangular, Group, Category, query){
+    .controller('GroupsIndexController',function($scope, Restangular, GroupsContext, Group, Category, query) {
 
-    Group
-      .customGET("search", query)
-      .then(function(groups) {
+      $scope.groups = GroupsContext.groups;
 
-        $scope.groups     = groups;
-        $scope.displayed  = [];
-      });
+      GroupsContext.search(query);
 
-    Category
-      .getList()
-      .then(function(categories) {
+      Category
+        .getList()
+        .then(function(categories) {
 
-        $scope.categories = categories;
-      });
+          $scope.categories = categories;
+        });
 
-    // add a new group form
-    $scope.add = function() {
+      /**
+       * Add a new group form
+       */
+      $scope.add = function() {
 
-      $scope.group          = {};
-      $scope.group.category = $scope.categories[0];
-    };
+        $scope.group          = {};
+        $scope.group.category = $scope.categories[0];
+      };
 
-    // remove the new group form
-    $scope.cancel = function() {
+      /**
+       * Remove the new group form
+       */
+      $scope.cancel = function() {
 
-      delete $scope.group;
-    };
+        delete $scope.group;
+      };
 
-    // add a group panel to the view
-    $scope.display = function(group) {
+      /**
+       * Flag a person as not selected
+       */
+      $scope.deselect = function(group) {
 
-      // don't add duplicate panels
-      if ($scope.displayed.indexOf(group) !== -1) {
+        group.selected = false;
+      };
 
-        return;
-      }
+      /**
+       * Flags a groups as selected
+       */
+      $scope.select = function(group) {
 
-      $scope.displayed.push(group);
-    };
+        group.selected = true;
+      };
 
-    // hide a group panel from the view
-    $scope.hide = function(group) {
+      /**
+       * Delete an group completely
+       */
+      $scope.remove = function(group) {
 
-      var index = $scope.displayed.indexOf(group);
+        group.remove();
 
-      $scope.displayed.splice(index, 1);
-    };
+        var index = $scope.groups.indexOf(group);
 
-    // delete an group completely
-    $scope.remove = function(group) {
+        $scope.groups.splice(index, 1);
+      };
 
-      group.remove();
+      /**
+       * Save the new group
+       */
+      $scope.save = function() {
 
-      var index = $scope.groups.indexOf(group);
+        // create a copy so we can get rid of $scope.group ASAP
+        var model = Restangular.copy($scope.group);
 
-      $scope.groups.splice(index, 1);
-    };
+        Group.post({name: model.name, category_id: model.category.id, description: ''});
 
-    // save the new group
-    $scope.save = function() {
+        $scope.groups.push({name: model.name, category: model.category.name});
 
-      // create a copy so we can get rid of $scope.group ASAP
-      var model = Restangular.copy($scope.group);
-
-      Group.post({name: model.name, category_id: model.category.id, description: ''});
-
-      $scope.groups.push({name: model.name, category: model.category.name});
-
-      delete $scope.group;
-    };
-  });
+        delete $scope.group;
+      };
+    });

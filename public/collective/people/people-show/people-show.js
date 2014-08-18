@@ -1,8 +1,21 @@
 angular
   .module('Collective')
   .controller('PeopleShowController',
-    function($scope, $stateParams, Person){
+    function($scope, GroupsContext, Person){
 
-      console.log($scope.person);
       $scope.groups = $scope.person.categorizedGroups();
+
+      $scope.selectGroup = function(group) {
+
+        var selGroup = _.findWhere(GroupsContext.groups, {id: group.id});
+
+        selGroup.selected = true;
+      };
+
+      $scope.deselectGroup = function(group) {
+
+        var selGroup = _.findWhere(GroupsContext.groups, {id: group.id});
+
+        selGroup.selected = false;
+      };
     });

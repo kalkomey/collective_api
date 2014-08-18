@@ -1,13 +1,14 @@
 angular
   .module('Collective')
-    .controller('PeopleIndexController', function($scope, Person, Restangular){
+    .controller('PeopleIndexController', function($scope, PeopleContext, Person, Restangular) {
 
-      $scope.people = Person.getList().$object;
+      $scope.people = PeopleContext.people;
 
       /**
        * Initialize a new person.
        */
       $scope.add = function(){
+
         $scope.person = {};
       };
 
@@ -15,6 +16,7 @@ angular
        * Reset the new person form.
        */
       $scope.cancel = function() {
+
         delete $scope.person;
       };
 
@@ -22,6 +24,7 @@ angular
        * Flag a person as selected
        */
       $scope.select = function(person) {
+
         person.selected = true;
       };
 
@@ -29,6 +32,7 @@ angular
        * Flag a person as not selected
        */
       $scope.deselect = function(person) {
+
         person.selected = false;
       };
 
@@ -36,17 +40,22 @@ angular
        * Delete a person.
        */
       $scope.remove = function(person) {
-        person.remove().then(function(){
-          $scope.people = _.without($scope.people, person);
-        })
+
+        person
+          .remove()
+            .then(function() {
+
+              $scope.people = _.without($scope.people, person);
+            });
       };
 
       /**
        * Save a person.
        */
       $scope.save = function() {
-        var model   = angular.copy($scope.person)
-          , promise = Person.post(model);
+
+        var model   = angular.copy($scope.person),
+            promise = Person.post(model);
 
         delete $scope.person;
 

@@ -3,7 +3,7 @@ json.array!(@resources) do |resource|
   json.name   resource.name
   json.title  resource.title
 
-  json.groups resource.memberships do |membership|
+  json.groups resource.memberships.sort_by {|mem| mem.group.category.priority} do |membership|
     json.id          membership.group.id
     json.name        membership.group.name
     json.category    membership.group.category.name

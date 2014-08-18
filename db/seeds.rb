@@ -1,5 +1,8 @@
-categories = %w(guild chapter tribe).map do |name|
-  Category.find_or_create_by(name: name);
+c_index = 0
+
+categories = %w(tribe chapter team guild).map do |name|
+  c_index += 1
+  Category.find_or_create_by(name: name, priority: c_index)
 end
 
 

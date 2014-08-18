@@ -1,12 +1,9 @@
 <h1>{{person.name}}</h1>
 <h2>{{person.title}}</h1>
-
-<div ng-repeat="(category, items) in groups">
-  <h3>{{ category | capitalize }}s</h3>
-  <ol class="list-group">
-    <li class="list-group-item" ng-repeat="group in items">
-      <a ui-sref="home.{{category}}s.show({ id: group.id })">{{ group.name}}</a>
-      <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
-    </li>
-  </ul>
-</div>
+<button ng-click="deselect(person)">Hide</button>
+<ol class="list-group">
+  <li class="list-group-item" ng-repeat="group in person.groups">
+    <button ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
+    <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
+  </li>
+</ol>

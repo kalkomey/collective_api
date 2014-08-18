@@ -1,19 +1,18 @@
 angular
   .module('Collective')
-  .controller('GroupsShowController', function($scope, $stateParams, Group, Person){
-    Group.one($stateParams.id).get().then(function(group){
-      $scope.group = group
-    })
+  .controller('GroupsShowController', function($scope, PeopleContext, Group, Person){
 
-    Person.getList().then(function(people){
-      $scope.people  = people;
-      // $scope.selectable = angular.clone(people)
-      //
-      // $scope.filterAssociatedPeople = function(person){
-      //   return _.find($scope.people, function(e){
-      //     e.name == person.name
-      //   });
-      // }
-    })
+    $scope.selectPerson = function(person) {
 
+      var selPerson = _.findWhere(PeopleContext.people, {id: person.id});
+
+      selPerson.selected = true;
+    };
+
+    $scope.deselectPerson = function(person) {
+
+      var selPerson = _.findWhere(PeopleContext.people, {id: person.id});
+
+      selPerson.selected = false;
+    };
   });
