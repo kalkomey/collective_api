@@ -2,10 +2,11 @@
 	<div class="form-wrap">
 		<div class="col-md-8">
 			<h1>People</h1>
+			<button class="btn btn-primary add-person" ng-if="!person" ng-click="add()">+</button>
 		</div>
 		
 		<div class="col-md-4">
-			<button class="btn btn-primary pull-right" ng-if="!person" ng-click="add()">+ New Person</button>
+			
 	
 			<form class="form-inline" ng-if="person" ng-submit="save()">
 			  <div class="form-group">
