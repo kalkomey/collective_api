@@ -4,41 +4,25 @@ angular
 
       $scope.people = PeopleContext.people;
 
-      /**
-       * Initialize a new person.
-       */
+      // initialize a new person
       $scope.add = function(){
 
         $scope.person = {};
       };
 
-      /**
-       * Reset the new person form.
-       */
+      // reset the new person form
       $scope.cancel = function() {
 
         delete $scope.person;
       };
 
-      /**
-       * Flag a person as selected
-       */
-      $scope.select = function(person) {
-
-        person.selected = true;
-      };
-
-      /**
-       * Flag a person as not selected
-       */
+      // flag a person as not selected
       $scope.deselect = function(person) {
 
         person.selected = false;
       };
 
-      /**
-       * Delete a person.
-       */
+      // delete a person
       $scope.remove = function(person) {
 
         person
@@ -49,9 +33,7 @@ angular
             });
       };
 
-      /**
-       * Save a person.
-       */
+      // save a person
       $scope.save = function() {
 
         var model   = angular.copy($scope.person),
@@ -60,5 +42,11 @@ angular
         delete $scope.person;
 
         $scope.people.push(promise.$object);
+      };
+
+      // flag a person as selected
+      $scope.select = function(person) {
+
+        person.selected = true;
       };
     });

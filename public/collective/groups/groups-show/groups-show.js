@@ -1,18 +1,23 @@
 angular
   .module('Collective')
-  .controller('GroupsShowController', function($scope, PeopleContext, Group, Person){
+    .controller('GroupsShowController', function($scope, PeopleContext, Group, Person, Membership) {
 
-    $scope.selectPerson = function(person) {
+      $scope.selectPerson = function(person) {
 
-      var selPerson = _.findWhere(PeopleContext.people, {id: person.id});
+        var selPerson           = _.findWhere(PeopleContext.people, {id: person.id});
+            selPerson.selected  = true;
+      };
 
-      selPerson.selected = true;
-    };
+      $scope.deselectPerson = function(person) {
 
-    $scope.deselectPerson = function(person) {
+        var selPerson           = _.findWhere(PeopleContext.people, {id: person.id});
+            selPerson.selected  = false;
+      };
 
-      var selPerson = _.findWhere(PeopleContext.people, {id: person.id});
+      $scope.addPerson = function(person) {
 
-      selPerson.selected = false;
-    };
-  });
+        var promise = Membership.post({group_id: $scope.group.id, employee_id: person.id});
+
+        $scope.group.people.push(person);
+      };
+    });
