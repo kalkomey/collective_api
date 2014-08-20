@@ -4,7 +4,7 @@
 			<h1>People</h1>
 			<button class="btn btn-primary add-person" ng-if="!person" ng-click="add()">+</button>
 		</div>
-		
+
 		<div class="col-md-6">
 			<form class="form-inline" ng-if="person" ng-submit="save()">
 			  <div class="form-group">
@@ -19,7 +19,7 @@
 	</div>
 
 	<ol class="list-group">
-	  <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people">
+	  <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people" jqyoui-draggable data-jqyoui-options="{revert: 'invalid', revertDuration: 0, helper: 'clone'}" data-drag='true'>
 	    <button class="btn btn-default" ng-click="select(person)">{{ person.name }}</button>
 	    <button class="btn btn-link" ng-click="remove(person)">&#x2715;</button>
 	  </li>

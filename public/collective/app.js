@@ -1,5 +1,5 @@
 angular
-  .module('Collective', ['ui.bootstrap', 'ui.utils', 'ui.router', 'restangular', 'ngAnimate']);
+  .module('Collective', ['ui.bootstrap', 'ui.utils', 'ui.router', 'restangular', 'ngAnimate', 'ngDragDrop']);
 
 angular
   .module('Collective')

@@ -8,47 +8,31 @@ angular
 
       Category
         .getList()
-        .then(function(categories) {
+          .then(function(categories) {
 
-          $scope.categories = categories;
-        });
+            $scope.categories = categories;
+          });
 
-      /**
-       * Add a new group form
-       */
+      // add a new group form
       $scope.add = function() {
 
         $scope.group          = {};
         $scope.group.category = $scope.categories[0];
       };
 
-      /**
-       * Remove the new group form
-       */
+      // remove the new group form
       $scope.cancel = function() {
 
         delete $scope.group;
       };
 
-      /**
-       * Flag a person as not selected
-       */
+      // flag a person as not selected
       $scope.deselect = function(group) {
 
         group.selected = false;
       };
 
-      /**
-       * Flags a groups as selected
-       */
-      $scope.select = function(group) {
-
-        group.selected = true;
-      };
-
-      /**
-       * Delete an group completely
-       */
+      // delete an group completely
       $scope.remove = function(group) {
 
         group.remove();
@@ -58,9 +42,7 @@ angular
         $scope.groups.splice(index, 1);
       };
 
-      /**
-       * Save the new group
-       */
+      // save the new group
       $scope.save = function() {
 
         // create a copy so we can get rid of $scope.group ASAP
@@ -71,5 +53,11 @@ angular
         $scope.groups.push({name: model.name, category: model.category.name});
 
         delete $scope.group;
+      };
+
+      // flags a groups as selected
+      $scope.select = function(group) {
+
+        group.selected = true;
       };
     });
