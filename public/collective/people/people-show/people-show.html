@@ -1,9 +1,19 @@
-<h1>{{person.name}}</h1>
-<h2>{{person.title}}</h1>
-<button ng-click="deselect(person)">Hide</button>
-<ol class="list-group">
-  <li class="list-group-item" ng-repeat="group in person.groups">
-    <button ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
-    <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
-  </li>
-</ol>
+<div class="col-md-12">
+	<div class="page-header">
+		<div class="hgroup">
+			<h2>{{person.name}}</h2>
+			<h3>{{person.title}}</h3>
+		</div>
+		<a class="text hide" ng-click="deselect(person)">Hide</a>
+	</div>
+
+	
+	
+	
+	<ol class="list-group">
+	  <li class="list-group-item" ng-repeat="group in person.groups">
+	    <button ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
+	    <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
+	  </li>
+	</ol>
+</div>
