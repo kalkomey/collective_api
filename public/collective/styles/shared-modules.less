@@ -6,11 +6,11 @@
 	}
 
 	ol{
-		margin-bottom: 1rem;
 		padding-bottom: 1rem;
 		margin-top: 1rem;
+		margin-bottom: 0;
 		padding-top: 1rem;
-		border-bottom: 2px solid #efefef;
+		border-bottom: 1px solid #222;
 	}
 
 	li{
@@ -18,8 +18,8 @@
 		border: 0;
 		padding: .5rem;
 		margin: .5rem;
-		background: #efefef;
-		border: 1px solid #fff;
+		background: @textureImg;
+		border: 1px solid #efefef;
 		border-radius: 1rem;
 
 		.btn-link{
@@ -56,8 +56,11 @@
 }
 
 .person{
-	width: auto;
+	width: 100%;
 	font-size: 1rem;
+	background: @textureImg;
+	float: left;
+	clear: both;
 }
 
 .page-header{

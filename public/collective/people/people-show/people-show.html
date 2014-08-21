@@ -6,12 +6,8 @@
 		</div>
 		<a class="text hide" ng-click="deselect(person)">Hide</a>
 	</div>
-
-	
-	
-	
-	<ol class="list-group">
-	  <li class="list-group-item" ng-repeat="group in person.groups">
+	<ol>
+	  <li ng-repeat="group in person.groups">
 	    <button ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
 	    <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
 	  </li>
