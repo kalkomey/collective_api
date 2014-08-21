@@ -2,11 +2,11 @@
 	<div class="page-header">
 		<div class="hgroup">
 			<h2>{{person.name}}</h2>
-			<h3>{{person.title}}</h3>
+			<h3 ng-if="person.title">{{person.title}}</h3>
 		</div>
-		<a class="text hide" ng-click="deselect(person)">Hide</a>
+		<a class="text" ng-click="deselect(person)">Hide</a>
 	</div>
-	<ol>
+	<ol class="list-unstyled">
 	  <li ng-repeat="group in person.groups">
 	    <button ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
 	    <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
