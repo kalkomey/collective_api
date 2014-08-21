@@ -18,7 +18,7 @@
 		</div>
 	</div>
 
-	<ol class="list-unstyled">
+	<ol class="list-unstyled taggy-items">
 	  <li ui-sref-active="active" ng-repeat="person in people" ng-model="person" jqyoui-draggable="{placeholder: 'keep'}" data-jqyoui-options="{revert: 'invalid', revertDuration: 0, helper: 'clone'}" data-drag='true'>
 	    <button class="btn btn-default" ng-click="select(person)">{{ person.name }}</button>
 	    <button class="btn btn-link" ng-click="remove(person)">&#x2715;</button>
