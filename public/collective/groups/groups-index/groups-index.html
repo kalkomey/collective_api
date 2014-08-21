@@ -19,13 +19,13 @@
 		</div>
 	</div>
 
-	<ol class="list-group">
-	  <li class="list-group-item" ui-sref-active="active" ng-repeat="group in groups">
+	<ol class="list-unstyled taggy-items">
+	  <li ui-sref-active="active" ng-repeat="group in groups">
 	    <button class="btn btn-default" ng-click="select(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
 	    <button class="btn btn-link" ng-click="remove(group)">&#x2715;</button>
 	  </li>
 	</ol>
 
-	<div ui-view="group" ng-repeat="group in groups | filter: {selected: true}">
+	<div class="listing-details" ui-view="group" ng-repeat="group in groups | filter: {selected: true}">
 	</div>
 </div>
