@@ -8,7 +8,7 @@
 		<div class="col-md-6">
 			<form class="form-inline" ng-if="person" ng-submit="save()">
 			  <div class="form-group">
-			  	<input class="form-control" type="text" ng-model="person.name" placaeholder="Michael Jackson" autofocus>
+			  	<input class="form-control" type="text" ng-model="person.name" placeholder="Michael Jackson" autofocus>
 			  </div>
 			  <div class="form-group">
 			  	<button class="btn btn-success" type="submit">&#x2713;</button>
@@ -19,7 +19,7 @@
 	</div>
 
 	<ol class="list-group">
-	  <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people" jqyoui-draggable data-jqyoui-options="{revert: 'invalid', revertDuration: 0, helper: 'clone'}" data-drag='true'>
+	  <li class="list-group-item" ui-sref-active="active" ng-repeat="person in people" ng-model="person" jqyoui-draggable="{placeholder: 'keep'}" data-jqyoui-options="{revert: 'invalid', revertDuration: 0, helper: 'clone'}" data-drag='true'>
 	    <button class="btn btn-default" ng-click="select(person)">{{ person.name }}</button>
 	    <button class="btn btn-link" ng-click="remove(person)">&#x2715;</button>
 	  </li>

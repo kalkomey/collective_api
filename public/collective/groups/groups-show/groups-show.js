@@ -14,10 +14,10 @@ angular
             selPerson.selected  = false;
       };
 
-      $scope.addPerson = function(person) {
+      $scope.addPerson = function(a, b, c, d) {
+//console.log(a, b, c, d);
+        //var promise = Membership.post({group_id: $scope.group.id, employee_id: person.id});
 
-        var promise = Membership.post({group_id: $scope.group.id, employee_id: person.id});
-
-        $scope.group.people.push(person);
+        //$scope.group.people.push(person);
       };
     });

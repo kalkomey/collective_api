@@ -8,10 +8,10 @@ angular
 
       Category
         .getList()
-          .then(function(categories) {
+            .then(function(categories) {
 
-            $scope.categories = categories;
-          });
+              $scope.categories = categories;
+            });
 
       // add a new group form
       $scope.add = function() {
