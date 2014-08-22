@@ -1,4 +1,14 @@
+#people{
+	background: #607d91;
+}
+
+#groups{
+	background: #8DA78F;
+}
+
 .categories{
+	padding: 2rem;
+
 	ol, .form-wrap{
 		width: 100%;
 		float: left;
@@ -6,31 +16,14 @@
 	}
 
 	ol{
-		margin-bottom: 1rem;
 		padding-bottom: 1rem;
 		margin-top: 1rem;
+		margin-bottom: 0;
 		padding-top: 1rem;
-		border-bottom: 2px solid #efefef;
+		border-bottom: 1px solid rgba(214, 214, 214, 0.63);
 	}
 
-	li{
-		float: left;
-		border: 0;
-		padding: .5rem;
-		margin: .5rem;
-		background: #efefef;
-		border: 1px solid #fff;
-		border-radius: 1rem;
-
-		.btn-link{
-			color: @dangerColor;
-			text-decoration: none;
-
-			&:hover{
-				color: #222;
-			}
-		}
-	}
+	
 
 	h1{
 		margin-top: 0;
@@ -55,16 +48,69 @@
 	}
 }
 
-.person{
-	width: auto;
+// styles the <li>s in the ol or ul to look like little interactive tags. S'cute!
+.taggy-items{ 
+	li{
+		float: left;
+		border: 0;
+		padding: .5rem;
+		margin: .5rem;
+		background: @textureImg;
+		border: 1px solid #efefef;
+		border-radius: 1rem;
+
+		.btn-link{
+			color: @dangerColor;
+			text-decoration: none;
+
+			&:hover{
+				color: #222;
+			}
+		}
+	}
+}
+
+.listing-details{
+	width: 100%;
 	font-size: 1rem;
+	background: rgba(237, 242, 247, 0.29);
+	float: left;
+	clear: both;
+	border-bottom: 1px solid rgba(214, 214, 214, 0.25);
+
+	h2, h3{
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	h3{
+		font-size: 1.5rem;
+	}
+
+	ol{
+		border-bottom: 0;
+		margin-top: 0;
+	}
+
+	li{
+		background: #C5DBEE;
+
+		span{
+			font-size: 2rem;
+			display: inline-block;
+			vertical-align: middle;
+			color: #B0B456;
+		}
+	}
 }
 
 .page-header{
 	width: 100%;
 	clear: both;
 	float: left;
-	margin-top: 0;
+	padding-bottom: 0;
+	margin: 0;
+	border-bottom: 0;
 
 	.hgroup{
 		float: left;

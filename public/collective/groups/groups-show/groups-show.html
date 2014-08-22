@@ -1,10 +1,16 @@
-<h1>{{group.name}}</h1>
-<h2>Members</h2>
-<button ng-click="deselect(group)">Hide</button>
-<ol class="list-group" jqyoui-droppable="{keepUniqueOn: 'id'}" data-drop="true" data-jqyoui-options="{accept: '[ng-model=person]'}" ng-model="group.people">
-  <li class="list-group-item" ng-repeat="person in group.people | orderBy: 'name'">
-    <button ng-click="selectPerson(person)">{{ person.name }}</button>
-    <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
-  </li>
-</ol>
-
+<div class="col-md-12">
+	<div class="page-header">
+		<div class="hgroup pull-left">
+			<h2>{{group.name}}</h2>
+			<h3>{{group.category}}</h3>
+			
+		</div>
+		<button class="btn btn-link pull-right" ng-click="deselect(group)">Hide</button>
+	</div>
+	<ol class="list-unstyled taggy-items" jqyoui-droppable="{onDrop: 'addPerson', keepUniqueOn: 'id'}" data-drop="true" data-jqyoui-options="{accept: '[ng-model=person]'}" ng-model="group.people">
+	  <li ng-repeat="person in group.people | orderBy: 'name'">
+	    <button class="btn btn-default" ng-click="selectPerson(person)">{{ person.name }}</button>
+	    <span ng-if="person.coordinator">&#x2605;</span>
+	  </li>
+	</ol>
+</div>

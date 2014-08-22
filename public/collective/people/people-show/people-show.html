@@ -1,19 +1,15 @@
 <div class="col-md-12">
 	<div class="page-header">
-		<div class="hgroup">
+		<div class="hgroup pull-left">
 			<h2>{{person.name}}</h2>
-			<h3>{{person.title}}</h3>
+			<h3 ng-if="person.title">{{person.title}}</h3>
 		</div>
-		<a class="text hide" ng-click="deselect(person)">Hide</a>
+		<a class="btn btn-link pull-right" ng-click="deselect(person)">Hide</a>
 	</div>
-
-	
-	
-	
-	<ol class="list-group">
-	  <li class="list-group-item" ng-repeat="group in person.groups">
-	    <button ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
-	    <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
+	<ol class="list-unstyled taggy-items">
+	  <li ng-repeat="group in person.groups">
+	    <button class="btn btn-default" ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
+	    <span ng-if="group.coordinator">&#x2605;</span>
 	  </li>
 	</ol>
 </div>
