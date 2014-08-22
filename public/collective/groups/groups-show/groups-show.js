@@ -14,10 +14,22 @@ angular
             selPerson.selected  = false;
       };
 
-      $scope.addPerson = function(a, b, c, d) {
-//console.log(a, b, c, d);
-        //var promise = Membership.post({group_id: $scope.group.id, employee_id: person.id});
+      $scope.addPerson = function(person) {
 
-        //$scope.group.people.push(person);
+        var promise = Membership.post({group_id: $scope.group.id, employee_id: person.id});
       };
+
+      $scope.$watchCollection('group.people', function(newPeople, oldPeople) {
+
+        // we need to do something only if a person was added
+        if (newPeople.length < oldPeople.length) {
+
+          return;
+        }
+
+        // for now we can assume that the last person is the new person
+        var newPerson = newPeople[newPeople.length - 1];
+
+        $scope.addPerson(newPerson);
+      });
     });

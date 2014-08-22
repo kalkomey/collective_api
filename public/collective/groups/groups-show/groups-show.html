@@ -1,8 +1,8 @@
 <h1>{{group.name}}</h1>
 <h2>Members</h2>
 <button ng-click="deselect(group)">Hide</button>
-<ol class="list-group" jqyoui-droppable="{onDrop: 'addPerson', keepUniqueOn: 'id'}" data-drop="true" data-jqyoui-options ng-model="group.people">
-  <li class="list-group-item" ng-repeat="person in group.people">
+<ol class="list-group" jqyoui-droppable="{keepUniqueOn: 'id'}" data-drop="true" data-jqyoui-options="{accept: '[ng-model=person]'}" ng-model="group.people">
+  <li class="list-group-item" ng-repeat="person in group.people | orderBy: 'name'">
     <button ng-click="selectPerson(person)">{{ person.name }}</button>
     <span class="glyphicon glyphicon-tower" ng-if="person.coordinator"></span>
   </li>
