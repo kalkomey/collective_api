@@ -12,6 +12,7 @@ Rails.application.routes.draw do
           get "categories"
         end
       end
+      resources :memberships, only: [:create]
     end
   end
 end

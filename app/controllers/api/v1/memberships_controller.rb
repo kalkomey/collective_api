@@ -7,13 +7,12 @@ class Api::V1::MembershipsController < ApplicationController
       return
     end
 
-    render action: 'show', status: :created
-    return
+    head :ok
   end
 
   private
 
     def membership_params
-      params.require(:membership).permit(:user_id, :group_id, :coordinator)
+      params.require(:membership).permit(:employee_id, :group_id, :coordinator)
     end
 end

@@ -22,7 +22,7 @@ angular
       $scope.$watchCollection('group.people', function(newPeople, oldPeople) {
 
         // we need to do something only if a person was added
-        if (newPeople.length < oldPeople.length) {
+        if (newPeople.length <= oldPeople.length) {
 
           return;
         }
