@@ -2,6 +2,7 @@ angular
   .module('Collective')
     .controller('GroupsShowController', function($scope, PeopleContext, Group, Person, Membership) {
 
+      // listen to the collection for any changes
       $scope.$watchCollection('group.people', function(newPeople, oldPeople) {
 
         // we need to do something only if a person was added
@@ -16,20 +17,33 @@ angular
         $scope.addPerson(newPerson);
       });
 
+      // set a person in the group to selected
       $scope.selectPerson = function(person) {
 
         var selPerson           = _.findWhere(PeopleContext.people, {id: person.id});
             selPerson.selected  = true;
       };
 
+      // deselect a person in the group
       $scope.deselectPerson = function(person) {
 
         var selPerson           = _.findWhere(PeopleContext.people, {id: person.id});
             selPerson.selected  = false;
       };
 
+      // add a person to the group
       $scope.addPerson = function(person) {
 
         var promise = Membership.post({group_id: $scope.group.id, employee_id: person.id});
+      };
+
+      // delete a person from a group
+      $scope.removePerson = function(person) {
+
+        Membership.customDELETE('destroy', {group_id: $scope.group.id, employee_id: person.id} );
+
+        var index = $scope.group.people.indexOf(person);
+
+        $scope.group.people.splice(index, 1);
       };
     });

@@ -12,7 +12,11 @@ Rails.application.routes.draw do
           get "categories"
         end
       end
-      resources :memberships, only: [:create]
+      resources :memberships, only: [:create] do
+        collection do
+          delete "destroy"
+        end
+      end
     end
   end
 end

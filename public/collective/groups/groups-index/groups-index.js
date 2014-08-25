@@ -32,7 +32,7 @@ angular
         group.selected = false;
       };
 
-      // delete an group completely
+      // delete a group completely
       $scope.remove = function(group) {
 
         group.remove();
