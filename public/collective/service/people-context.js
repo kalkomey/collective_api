@@ -4,5 +4,7 @@ angular
 
       var people = Person.getList().$object;
 
-      return {people: people};
+      return {
+        people: people
+      };
     });

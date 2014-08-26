@@ -3,52 +3,38 @@ angular
     .controller('PeopleShowController',
       function($scope, GroupsContext, MembershipsContext, Person, Membership) {
 
+        $scope.droppedGroups = [];
+
         // listen to the collection for any changes
-        // $scope.$watchCollection('person.groups', function(newGroups, oldGroups) {
+        $scope.$watchCollection('droppedGroups', function(newGroups, oldGroups) {
 
-        //   // we need to do something only if a person was added
-        //   if (newGroups.length <= oldGroups.length) {
+          // when this changes, there should only ever be one entry
+          var newGroup = newGroups[0] || false,
+              isUnique  = newGroup && ! _.findWhere($scope.memberships, {employee_id: $scope.person.id, group_id: newGroup.id});
 
-        //     return;
-        //   }
+          if (newGroup && isUnique) {
 
-        //   // for now we can assume that the last person is the new person
-        //   var newGroup = newGroups[newGroups.length - 1];
+            $scope.addMembership(newGroup);
+          }
 
-        //   $scope.addGroup(newGroup);
-        // });
+          $scope.droppedGroups = [];
+        });
 
         // select a group
         $scope.selectGroup  = function(group) {
 
-          var selGroup          = _.findWhere(GroupsContext.groups, {id: group.id});
-              selGroup.selected = true;
-        };
-
-        // deselect a group
-        $scope.deselectGroup = function(group) {
-
-          var selGroup          = _.findWhere(GroupsContext.groups, {id: group.id});
-              selGroup.selected = false;
+          group.selected = true;
         };
 
         // add a group to the person
-        $scope.addGroup = function(group) {
+        $scope.addMembership = function(group) {
 
-          var promise = Membership.post({group_id: group.id, employee_id: $scope.person.id});
+          MembershipsContext.addMembership({group_id: group.id, employee_id: $scope.person.id});
         };
 
         // delete a group from the person
         $scope.breakMembership = function(membership) {
 
-          var index = $scope.memberships.indexOf(membership);
-
-          $scope.memberships.splice(index, 1);
-
-          // Membership.customDELETE('destroy', {group_id: group.id, employee_id: $scope.person.id} );
-
-          // var index = $scope.person.groups.indexOf(group);
-
-          // $scope.person.groups.splice(index, 1);
+          MembershipsContext.breakMembership({group_id: membership.group_id, employee_id: membership.employee_id});
         };
       });

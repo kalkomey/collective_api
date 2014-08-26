@@ -2,64 +2,40 @@ angular
   .module('Collective')
     .controller('GroupsShowController', function($scope, PeopleContext, MembershipsContext, Group, Person, Membership) {
 
+      // TODO find out why group.people exists here
+
+      $scope.droppedPeople = [];
+
       // listen to the collection for any changes
-      $scope.$watchCollection('group.people', function(newPeople, oldPeople) {
+      $scope.$watchCollection('droppedPeople', function(newPeople, oldPeople) {
 
-        // we need to do something only if a person was added
-        if (newPeople.length <= oldPeople.length) {
+        // when this changes, there should only ever be one entry
+        var newPerson = newPeople[0] || false,
+            isUnique  = newPerson && ! _.findWhere($scope.memberships, {group_id: $scope.group.id, employee_id: newPerson.id});
 
-          return;
+        if (newPerson && isUnique) {
+
+          $scope.addMembership(newPerson);
         }
 
-        // for now we can assume that the last person is the new person
-        var newPerson = newPeople[newPeople.length - 1];
-
-        $scope.addPerson(newPerson);
+        $scope.droppedPeople = [];
       });
 
       // set a person in the group to selected
       $scope.selectPerson = function(person) {
 
-        var selPerson           = _.findWhere(PeopleContext.people, {id: person.id});
-            selPerson.selected  = true;
-      };
-
-      // deselect a person in the group
-      $scope.deselectPerson = function(person) {
-
-        var selPerson           = _.findWhere(PeopleContext.people, {id: person.id});
-            selPerson.selected  = false;
+        person.selected = true;
       };
 
       // add a person to the group
-      $scope.addPerson = function(person) {
+      $scope.addMembership = function(person) {
 
-        var promise     = Membership.post({group_id: $scope.group.id, employee_id: person.id}),
-            addedPerson = _.findWhere(PeopleContext.people, {id: person.id}),
-            index;
-
-        if (addedPerson) {
-
-          index = addedPerson.groups.push($scope.group);
-        }
+        MembershipsContext.addMembership({group_id: $scope.group.id, employee_id: person.id});
       };
 
-      // delete a person from a group
-      $scope.removePerson = function(person) {
+      // delete a group from the person
+      $scope.breakMembership = function(membership) {
 
-        Membership.customDELETE('destroy', {group_id: $scope.group.id, employee_id: person.id} );
-
-        var index = $scope.group.people.indexOf(person);
-
-        $scope.group.people.splice(index, 1);
-
-        var removedPerson = _.findWhere(PeopleContext.people, {id: person.id});
-
-        if (removedPerson) {
-
-          index = removedPerson.groups.indexOf($scope.group.id);
-
-          removedPerson.groups.splice(index, 1);
-        }
+        MembershipsContext.breakMembership({group_id: membership.group_id, employee_id: membership.employee_id});
       };
     });
