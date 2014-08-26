@@ -22,7 +22,6 @@
 	<ol class="list-unstyled taggy-items">
 	  <li ui-sref-active="active" ng-repeat="group in groups" ng-model="group" jqyoui-draggable="{placeholder: 'keep'}" data-jqyoui-options="{revert: 'invalid', revertDuration: 0, helper: 'clone'}" data-drag='true'>
 	    <button class="btn btn-default" ng-click="select(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
-	    <button class="btn btn-link" ng-click="remove(group)">&#x2715;</button>
 	  </li>
 	</ol>
 
