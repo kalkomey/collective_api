@@ -1,6 +1,6 @@
 angular
   .module('Collective')
-    .controller('GroupsShowController', function($scope, PeopleContext, Group, Person, Membership) {
+    .controller('GroupsShowController', function($scope, PeopleContext, MembershipsContext, Group, Person, Membership) {
 
       // listen to the collection for any changes
       $scope.$watchCollection('group.people', function(newPeople, oldPeople) {
@@ -34,7 +34,14 @@ angular
       // add a person to the group
       $scope.addPerson = function(person) {
 
-        var promise = Membership.post({group_id: $scope.group.id, employee_id: person.id});
+        var promise     = Membership.post({group_id: $scope.group.id, employee_id: person.id}),
+            addedPerson = _.findWhere(PeopleContext.people, {id: person.id}),
+            index;
+
+        if (addedPerson) {
+
+          index = addedPerson.groups.push($scope.group);
+        }
       };
 
       // delete a person from a group
@@ -45,5 +52,14 @@ angular
         var index = $scope.group.people.indexOf(person);
 
         $scope.group.people.splice(index, 1);
+
+        var removedPerson = _.findWhere(PeopleContext.people, {id: person.id});
+
+        if (removedPerson) {
+
+          index = removedPerson.groups.indexOf($scope.group.id);
+
+          removedPerson.groups.splice(index, 1);
+        }
       };
     });

@@ -1,24 +1,22 @@
 angular
   .module('Collective')
     .controller('PeopleShowController',
-      function($scope, GroupsContext, Person, Membership) {
-
-        $scope.groups = $scope.person.categorizedGroups();
+      function($scope, GroupsContext, MembershipsContext, Person, Membership) {
 
         // listen to the collection for any changes
-        $scope.$watchCollection('person.groups', function(newGroups, oldGroups) {
+        // $scope.$watchCollection('person.groups', function(newGroups, oldGroups) {
 
-          // we need to do something only if a person was added
-          if (newGroups.length <= oldGroups.length) {
+        //   // we need to do something only if a person was added
+        //   if (newGroups.length <= oldGroups.length) {
 
-            return;
-          }
+        //     return;
+        //   }
 
-          // for now we can assume that the last person is the new person
-          var newGroup = newGroups[newGroups.length - 1];
+        //   // for now we can assume that the last person is the new person
+        //   var newGroup = newGroups[newGroups.length - 1];
 
-          $scope.addGroup(newGroup);
-        });
+        //   $scope.addGroup(newGroup);
+        // });
 
         // select a group
         $scope.selectGroup  = function(group) {
@@ -41,12 +39,16 @@ angular
         };
 
         // delete a group from the person
-        $scope.removeGroup = function(group) {
+        $scope.breakMembership = function(membership) {
 
-          Membership.customDELETE('destroy', {group_id: group.id, employee_id: $scope.person.id} );
+          var index = $scope.memberships.indexOf(membership);
 
-          var index = $scope.person.groups.indexOf(group);
+          $scope.memberships.splice(index, 1);
 
-          $scope.person.groups.splice(index, 1);
+          // Membership.customDELETE('destroy', {group_id: group.id, employee_id: $scope.person.id} );
+
+          // var index = $scope.person.groups.indexOf(group);
+
+          // $scope.person.groups.splice(index, 1);
         };
       });

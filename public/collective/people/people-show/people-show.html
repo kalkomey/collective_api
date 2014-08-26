@@ -7,10 +7,10 @@
 		<a class="btn btn-link pull-right" ng-click="deselect(person)">Hide</a>
 	</div>
 	<ol class="list-unstyled taggy-items" jqyoui-droppable="{keepUniqueOn: 'id'}" data-drop="true" data-jqyoui-options="{accept: '[ng-model=group]'}" ng-model="person.groups">
-	  <li ng-repeat="group in person.groups">
-	    <button class="btn btn-default" ng-click="selectGroup(group)">{{ group.category | capitalize}}: {{ group.name }}</button>
-      <button class="btn btn-link" ng-click="removeGroup(group)">&#x2715;</button>
-	    <span ng-if="group.coordinator">&#x2605;</span>
+	  <li ng-repeat="membership in memberships | filter: {employee_id: person.id}">
+	    <button class="btn btn-default" ng-click="selectGroup(group)">{{ membership.group.category | capitalize}}: {{ membership.group.name }}</button>
+      <button class="btn btn-link" ng-click="breakMembership(membership)">&#x2715;</button>
+	    <span ng-if="membership.group.coordinator">&#x2605;</span>
 	  </li>
 	</ol>
 </div>
