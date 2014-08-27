@@ -36,6 +36,6 @@ angular
       // delete a group from the person
       $scope.breakMembership = function(membership) {
 
-        MembershipsContext.breakMembership({group_id: membership.group_id, employee_id: membership.employee_id});
+        MembershipsContext.breakMembership(membership);
       };
     });

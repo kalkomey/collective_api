@@ -32,7 +32,7 @@ angular
         },
         breakMembership: function(membership) {
 
-          Membership.customDELETE('destroy', membership);
+          Membership.customDELETE('destroy', {group_id: membership.group_id, employee_id: membership.employee_id});
 
           var index = memberships.indexOf(membership);
 
