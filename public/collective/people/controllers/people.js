@@ -43,8 +43,16 @@ angular
       };
 
       // flag a person as selected
-      $scope.selectAROO = function(person) {
+      $scope.select = function(person) {
 
         person.selected = true;
+      };
+    })
+    .directive('people', function() {
+
+      return {
+        restrict: 'E',
+        replace: 'true',
+        templateUrl: 'people/templates/people.html'
       };
     });

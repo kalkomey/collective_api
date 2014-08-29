@@ -1,0 +1,39 @@
+<div class="col-md-6" ui-view="people" ng-class="people-view" id="people">
+
+  <div class="col-md-12 categories">
+
+    <div class="col-md-6">
+      <h1>People</h1>
+      <button class="btn btn-primary add-person" ng-if="!person" ng-click="add()">+</button>
+    </div>
+
+    <form class="col-md-6 form-inline" ng-if="person" ng-submit="save()">
+      <div class="form-group">
+        <input class="form-control" type="text" ng-model="person.name" placeholder="Michael Jackson" autofocus>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" type="submit">&#x2713;</button>
+        <button class="btn btn-link" ng-click="cancel()">&#x2715;</button>
+      </div>
+    </form>
+
+    <ol class="list-unstyled taggy-items">
+      <li
+      ui-sref-active      = "active"
+      ng-repeat           = "person in people | orderBy: 'name'"
+      ng-model            = "person"
+      jqyoui-draggable    = "{placeholder: 'keep'}"
+      data-jqyoui-options = "{revert: 'invalid', revertDuration: 0, helper: 'clone'}"
+      data-drag           = 'true'
+      class               = "btn btn-default"
+      ng-click            = "select(person)"
+    >
+      {{ person.name }}
+      </li>
+    </ol>
+
+    <person ng-repeat="person in people | filter:{ selected: true }" />
+
+  </div>
+
+</div>

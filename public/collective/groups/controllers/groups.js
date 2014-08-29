@@ -56,4 +56,12 @@ angular
 
         group.selected = true;
       };
+    })
+    .directive('groups', function() {
+
+      return {
+        restrict: 'E',
+        replace: 'true',
+        templateUrl: 'groups/templates/groups.html'
+      };
     });

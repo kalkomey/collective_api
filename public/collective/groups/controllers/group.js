@@ -38,4 +38,12 @@ angular
 
         MembershipsContext.breakMembership(membership);
       };
+    })
+    .directive('group', function() {
+
+      return {
+        restrict: 'E',
+        replace: 'true',
+        templateUrl: 'groups/templates/group.html'
+      };
     });

@@ -28,19 +28,15 @@ angular
           url: '/home',
           views: {
             "people@app": {
-              templateUrl: 'people/people-index/people-index.html',
               controller: 'PeopleIndexController'
             },
             "person@app.home" : {
-              templateUrl: "people/people-show/people-show.html",
               controller: 'PeopleShowController'
             },
             "groups@app": {
-              templateUrl: 'groups/groups-index/groups-index.html',
               controller: 'GroupsIndexController'
             },
             "group@app.home" : {
-              templateUrl: "groups/groups-show/groups-show.html",
               controller: 'GroupsShowController'
             },
           }
