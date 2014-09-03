@@ -11,7 +11,6 @@ angular
       $stateProvider
         .state('app', {
           abstract: true,
-          templateUrl: 'home/home-index/home-index.html',
           controller: function($scope, PeopleContext, GroupsContext, MembershipsContext) {
 
             $scope.people       = PeopleContext.people;
@@ -25,27 +24,29 @@ angular
           }
         })
         .state('app.home', {
-          url: '/home',
-          views: {
-            "people@app": {
-              controller: 'PeopleIndexController'
-            },
-            "person@app.home" : {
-              controller: 'PeopleShowController'
-            },
-            "groups@app": {
-              controller: 'GroupsIndexController'
-            },
-            "group@app.home" : {
-              controller: 'GroupsShowController'
-            },
-          }
-        });
+          url: '/home'
+        })
+        ;
 
-    /* Add New States Above */
-    $urlRouterProvider.otherwise('/home');
+      /* Add New States Above */
+      $urlRouterProvider.otherwise('/home');
+    })
+    .directive('mainView', function() {
 
-});
+      return {
+        restrict: 'E',
+        replace: 'true',
+        templateUrl: 'home/templates/home.html'
+      };
+    })
+    .directive('navigation', function() {
+
+      return {
+        restrict: 'E',
+        replace: 'true',
+        templateUrl: 'home/templates/navigation.html'
+      };
+    });
 
 angular
   .module('Collective')

@@ -42,6 +42,7 @@ angular
       return {
         restrict: 'E',
         replace: 'true',
-        templateUrl: 'people/templates/person.html'
+        templateUrl: 'people/templates/person.html',
+        controller: 'PeopleShowController'
       };
     });

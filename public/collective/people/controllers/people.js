@@ -53,6 +53,7 @@ angular
       return {
         restrict: 'E',
         replace: 'true',
-        templateUrl: 'people/templates/people.html'
+        templateUrl: 'people/templates/people.html',
+        controller: 'PeopleIndexController'
       };
     });

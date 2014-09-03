@@ -62,6 +62,7 @@ angular
       return {
         restrict: 'E',
         replace: 'true',
-        templateUrl: 'groups/templates/groups.html'
+        templateUrl: 'groups/templates/groups.html',
+        controller: 'GroupsIndexController'
       };
     });

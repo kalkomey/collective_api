@@ -2,8 +2,6 @@ angular
   .module('Collective')
     .controller('GroupsShowController', function($scope, PeopleContext, MembershipsContext, Group, Person, Membership) {
 
-      // TODO find out why group.people exists here
-
       $scope.droppedPeople = [];
 
       // listen to the collection for any changes
@@ -44,6 +42,7 @@ angular
       return {
         restrict: 'E',
         replace: 'true',
-        templateUrl: 'groups/templates/group.html'
+        templateUrl: 'groups/templates/group.html',
+        controller: 'GroupsShowController'
       };
     });
