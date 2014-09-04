@@ -1,59 +1,62 @@
-angular
-  .module('Collective')
-    .controller('PeopleIndexController', function($scope, PeopleContext, MembershipsContext, Person, Restangular) {
+angular.module('Collective')
 
-      // initialize a new person
-      $scope.add = function(){
+  // controls the main people panel
+  .controller('PeopleController', function($scope, PeopleContext, MembershipsContext, Person, Restangular) {
 
-        $scope.person = {};
-      };
+    // initialize a new person
+    $scope.add = function(){
 
-      // reset the new person form
-      $scope.cancel = function() {
+      $scope.person = {};
+    };
 
-        delete $scope.person;
-      };
+    // reset the new person form
+    $scope.cancel = function() {
 
-      // flag a person as not selected
-      $scope.deselect = function(person) {
+      delete $scope.person;
+    };
 
-        person.selected = false;
-      };
+    // flag a person as not selected
+    $scope.deselect = function(person) {
 
-      // delete a person
-      $scope.remove = function(person) {
+      person.selected = false;
+    };
 
-        person
-          .remove()
-            .then(function() {
+    // delete a person
+    $scope.remove = function(person) {
 
-              $scope.people = _.without($scope.people, person);
-            });
-      };
+      person
+        .remove()
+          .then(function() {
 
-      // save a person
-      $scope.save = function() {
+            $scope.people = _.without($scope.people, person);
+          });
+    };
 
-        var model   = angular.copy($scope.person),
-            promise = Person.post(model);
+    // save a person
+    $scope.save = function() {
 
-        delete $scope.person;
+      var model   = angular.copy($scope.person),
+          promise = Person.post(model);
 
-        $scope.people.push(promise.$object);
-      };
+      delete $scope.person;
 
-      // flag a person as selected
-      $scope.select = function(person) {
+      $scope.people.push(promise.$object);
+    };
 
-        person.selected = true;
-      };
-    })
-    .directive('people', function() {
+    // flag a person as selected
+    $scope.select = function(person) {
 
-      return {
-        restrict: 'E',
-        replace: 'true',
-        templateUrl: 'people/templates/people.html',
-        controller: 'PeopleIndexController'
-      };
-    });
+      person.selected = true;
+    };
+  })
+
+  // people view
+  .directive('people', function() {
+
+    return {
+      restrict: 'E',
+      replace: 'true',
+      templateUrl: 'people/templates/people.html',
+      controller: 'PeopleController'
+    };
+  });

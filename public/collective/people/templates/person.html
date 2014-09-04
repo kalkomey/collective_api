@@ -1,11 +1,10 @@
-<div class="listing-details col-md-12" ui-view="person">
+<accordion-group>
 
-    <div class="hgroup pull-left">
-      <h2>{{person.name}}</h2>
-      <h3 ng-if="person.title">{{person.title}}</h3>
-    </div>
-
+  <accordion-heading>
+    {{person.name}}
+    <small ng-if="person.title">{{person.title}}</small>
     <button class="btn btn-link pull-right" ng-click="deselect(person)">Hide</button>
+  </accordion-heading>
 
   <ol
     class               = "list-unstyled taggy-items"
@@ -25,4 +24,4 @@
       <span ng-if="membership.group.coordinator">&#x2605;</span>
     </li>
   </ol>
-</div>
+</accordion-group>
