@@ -20,7 +20,8 @@
 
 	<ol class="list-unstyled taggy-items">
 	  <li ui-sref-active="active" ng-repeat="person in people | orderBy: 'name'" ng-model="person" jqyoui-draggable="{placeholder: 'keep'}" data-jqyoui-options="{revert: 'invalid', revertDuration: 0, helper: 'clone'}" data-drag='true'>
-	    <button class="btn btn-default" ng-click="select(person)">{{ person.name }}</button>
+
+	    <button class="btn btn-default" ng-click="selectAROO(person)">{{ person.name }}</button>
 	  </li>
 	</ol>
 
