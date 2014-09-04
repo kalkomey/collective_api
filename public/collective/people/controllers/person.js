@@ -44,7 +44,6 @@ angular.module('Collective')
 
     return {
       restrict: 'E',
-      // replace: 'true',
       templateUrl: 'people/templates/person.html',
       controller: 'PersonController'
     };
