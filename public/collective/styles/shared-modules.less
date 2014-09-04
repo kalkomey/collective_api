@@ -53,11 +53,36 @@
 	li{
 		float: left;
 		border: 0;
-		padding: .5rem;
+		padding-top: .25rem;
+		padding-right:.25rem;
+		padding-bottom: .25rem;
+		padding-left: 1.5rem;
 		margin: .5rem;
 		background: @textureImg;
-		border: 1px solid #efefef;
-		border-radius: 1rem;
+		border: 1px solid #6B6B6B;
+		border-radius: .5rem;
+		position: relative;
+		overflow: hidden;
+		cursor: move;
+
+		&:before, &:after{
+			content: '';
+			position: absolute;
+			left: -0.25rem;
+			font-size: 3rem;
+			width: 1.5rem;
+			height: 0.5rem;
+			border-bottom: 1px solid #b4b4b4;
+			border-top: 1px solid #b4b4b4;
+		}
+
+		&:before{
+			top: 1rem;
+		}
+
+		&:after{
+			top: 1.75rem;
+		}
 
 		.btn-link{
 			color: @dangerColor;
@@ -67,6 +92,11 @@
 				color: #222;
 			}
 		}
+	}
+
+	.btn{
+		padding: .25rem .5rem;
+		cursor: pointer;
 	}
 }
 
@@ -90,6 +120,7 @@
 	ol{
 		border-bottom: 0;
 		margin-top: 0;
+		min-height: 5rem;
 	}
 
 	li{
