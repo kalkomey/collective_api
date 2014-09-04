@@ -4,13 +4,13 @@ angular.module('Collective')
   .controller('PeopleController', function($scope, PeopleContext, MembershipsContext, Person, Restangular) {
 
     // initialize a new person
-    $scope.add = function(){
+    $scope.new = function(){
 
       $scope.person = {};
     };
 
     // reset the new person form
-    $scope.cancel = function() {
+    $scope.cancelNew = function() {
 
       delete $scope.person;
     };
@@ -33,7 +33,7 @@ angular.module('Collective')
     };
 
     // save a person
-    $scope.save = function() {
+    $scope.saveNew = function() {
 
       var model   = angular.copy($scope.person),
           promise = Person.post(model);
@@ -57,6 +57,11 @@ angular.module('Collective')
       restrict: 'E',
       replace: 'true',
       templateUrl: 'people/templates/people.html',
-      controller: 'PeopleController'
+      controller: 'PeopleController',
+      scope: {
+        groups: '=',
+        people: '=',
+        memberships: '='
+      }
     };
   });

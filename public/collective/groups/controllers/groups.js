@@ -11,14 +11,14 @@ angular.module('Collective')
           });
 
     // add a new group form
-    $scope.add = function() {
+    $scope.new = function() {
 
       $scope.group          = {};
       $scope.group.category = $scope.categories[0];
     };
 
     // remove the new group form
-    $scope.cancel = function() {
+    $scope.cancelNew = function() {
 
       delete $scope.group;
     };
@@ -40,7 +40,7 @@ angular.module('Collective')
     };
 
     // save the new group
-    $scope.save = function() {
+    $scope.saveNew = function() {
 
       // create a copy so we can get rid of $scope.group ASAP
       var model = Restangular.copy($scope.group);
@@ -54,7 +54,7 @@ angular.module('Collective')
 
     // flags a groups as selected
     $scope.select = function(group) {
-
+console.log(group.id);
       group.selected = true;
     };
   })
@@ -66,6 +66,11 @@ angular.module('Collective')
       restrict: 'E',
       replace: 'true',
       templateUrl: 'groups/templates/groups.html',
-      controller: 'GroupsController'
+      controller: 'GroupsController',
+      scope: {
+        groups: '=',
+        people: '=',
+        memberships: '='
+      }
     };
   });

@@ -56,7 +56,7 @@ angular.module('Collective', ['ui.bootstrap', 'ui.utils', 'ui.router', 'restangu
     return {
       restrict: 'E',
       replace: 'true',
-      templateUrl: 'home/templates/home.html'
+      templateUrl: 'home/templates/home.html',
     };
   })
 
