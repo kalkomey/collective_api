@@ -3,23 +3,18 @@ angular
   .factory('Person', function(Restangular) {
     // TODO(Joshua Kappers) https://github.com/mgonto/restangular/pull/809/files
 
-    var collection  = Restangular.all('employees'),
-        service     = Restangular.service("employees");
+    // Restangular.extendModel("employees", function(model){
 
-    service["remove"] = _.bind(collection["remove"], collection);
+    //   model.categorizedGroups = function(){
 
-    Restangular.extendModel("employees", function(model){
+    //     return _.groupBy(this.groups, function(group){
 
-      model.categorizedGroups = function(){
+    //       return group.category;
+    //     });
+    //   };
 
-        return _.groupBy(this.groups, function(group){
+    //   return model;
+    // });
 
-          return group.category;
-        });
-      };
-
-      return model;
-    });
-
-    return service;
+    return Restangular.all('employees');
   });

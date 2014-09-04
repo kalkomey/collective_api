@@ -1,10 +1,6 @@
 angular
   .module('Collective')
-    .controller('GroupsIndexController',function($scope, Restangular, GroupsContext, Group, Category, query) {
-
-      $scope.groups = GroupsContext.groups;
-
-      GroupsContext.search(query);
+    .controller('GroupsIndexController',function($scope, Restangular, GroupsContext, Group, Category) {
 
       Category
         .getList()

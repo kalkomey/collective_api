@@ -2,10 +2,7 @@ class Api::V1::EmployeesController < ApplicationController
   before_action :set_employee, only: [:update, :destroy]
 
   def index
-    @resources = Employee
-      .includes(memberships: { group: :category })
-      .order(:name)
-      .all
+    @resources = Employee.all
   end
 
   def show

@@ -1,5 +1,9 @@
 class Api::V1::MembershipsController < ApplicationController
 
+  def index
+    @resources = Membership.all
+  end
+
   def create
     unless @membership = Membership.create(membership_params)
       render json: @resource.errors, status: :unprocessable_entity

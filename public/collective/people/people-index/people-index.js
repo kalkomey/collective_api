@@ -1,8 +1,6 @@
 angular
   .module('Collective')
-    .controller('PeopleIndexController', function($scope, PeopleContext, Person, Restangular) {
-
-      $scope.people = PeopleContext.people;
+    .controller('PeopleIndexController', function($scope, PeopleContext, MembershipsContext, Person, Restangular) {
 
       // initialize a new person
       $scope.add = function(){
@@ -45,7 +43,7 @@ angular
       };
 
       // flag a person as selected
-      $scope.select = function(person) {
+      $scope.selectAROO = function(person) {
 
         person.selected = true;
       };

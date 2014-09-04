@@ -9,31 +9,37 @@ angular
       RestangularProvider.setRequestSuffix('.json');
 
       $stateProvider
-        .state('home', {
+        .state('app', {
+          abstract: true,
+          templateUrl: 'home/home-index/home-index.html',
+          controller: function($scope, PeopleContext, GroupsContext, MembershipsContext) {
+
+            $scope.people       = PeopleContext.people;
+            $scope.groups       = GroupsContext.groups;
+            $scope.memberships  = MembershipsContext.extendMemberships();
+          },
+          resolve: {
+            'MyServiceData': function(MembershipsContext) {
+              return MembershipsContext.promise;
+            }
+          }
+        })
+        .state('app.home', {
           url: '/home',
           views: {
-            "@": {
-              templateUrl: 'home/home-index/home-index.html',
-              controller: 'HomeIndexController'
-            },
-            "people@home": {
+            "people@app": {
               templateUrl: 'people/people-index/people-index.html',
               controller: 'PeopleIndexController'
             },
-            "person@home" : {
+            "person@app.home" : {
               templateUrl: "people/people-show/people-show.html",
               controller: 'PeopleShowController'
             },
-            "groups@home": {
+            "groups@app": {
               templateUrl: 'groups/groups-index/groups-index.html',
-              controller: 'GroupsIndexController',
-              resolve: {
-                query: function(){
-                  return {};
-                }
-              }
+              controller: 'GroupsIndexController'
             },
-            "group@home" : {
+            "group@app.home" : {
               templateUrl: "groups/groups-show/groups-show.html",
               controller: 'GroupsShowController'
             },
