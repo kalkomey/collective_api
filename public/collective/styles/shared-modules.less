@@ -3,23 +3,23 @@
   border: 0;
 }
 
-.categories{
+.groupings {
   padding: 0;
 
-	ol, .form-wrap{
+	ol, .form-wrap {
 		width: 100%;
 		float: left;
 		clear: both;
 	}
 
-	ol{
+	ol {
 		padding-bottom: 1rem;
 		margin-top: 1rem;
 		margin-bottom: 0;
 		padding-top: 1rem;
 	}
 
-	h1{
+	h1 {
 		margin-top: 0;
 		margin-bottom: 0;
 		margin-left: 0;
@@ -29,22 +29,23 @@
 		text-transform: uppercase;
 	}
 
-	.add-person{
+	.add-person {
 		float: left;
 
 	}
 
-	.form-wrap{
-		.btn-link{
+	.form-wrap {
+
+    .btn-link {
 			color: @dangerColor;
 		}
 	}
 }
 
 // styles the <li>s in the ol or ul to look like little interactive tags. S'cute!
-.taggy-items{
+.taggy-items {
 
-  li{
+  li {
 		float: left;
 		padding: 0.25rem 1rem 0.3rem 0.75rem;
 		margin: .5rem;
@@ -69,16 +70,16 @@
         border-top: 1px solid #b4b4b4;
       }
 
-      &:before{
+      &:before {
         top: 0.75rem;
       }
 
-      &:after{
+      &:after {
         top: 1.5rem;
       }
     }
 
-		.btn-link{
+		.btn-link {
 			color: @dangerColor;
 			text-decoration: none;
       padding: 0;
@@ -90,12 +91,12 @@
 		}
 	}
 
-	.btn{
+	.btn {
 		cursor: pointer;
 	}
 }
 
-.listing-details{
+.listing-details {
 	width: 100%;
 	font-size: 1rem;
 	background: rgba(237, 242, 247, 0.29);
@@ -103,22 +104,22 @@
 	clear: both;
 	border-bottom: 1px solid rgba(214, 214, 214, 0.25);
 
-	h2, h3{
+	h2, h3 {
 		margin-top: 1rem;
 		margin-bottom: 1rem;
 	}
 
-	h3{
+	h3 {
 		font-size: 1.5rem;
 	}
 
-	ol{
+	ol {
 		border-bottom: 0;
 		margin-top: 0;
 		min-height: 5rem;
 	}
 
-	li{
+	li {
 		background: #C5DBEE;
 
 		span{
@@ -130,7 +131,7 @@
 	}
 }
 
-.page-header{
+.page-header {
 	width: 100%;
 	clear: both;
 	float: left;
@@ -138,16 +139,63 @@
 	margin: 0;
 	border-bottom: 0;
 
-	.hgroup{
+	.hgroup {
 		float: left;
 		clear: left;
 	}
 
-	.close{
+	.close {
 		float: right;
 	}
 
-	h2{
+	h2 {
 		font-size: 2rem;
 	}
 }
+
+
+
+
+// panels
+.panel-group .panel {
+  border: 0;
+  border-radius: 0;
+}
+
+.panel-default {
+
+  .panel-heading {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+
+    a {
+      padding: 1.5rem;
+      background-color: #f8873a;
+      display: block;
+      cursor: pointer;
+      color: #fff;
+      font-size: 2rem;
+      text-transform: uppercase;
+
+      &:hover {
+        text-decoration: none;
+        background-color: #fd9700;
+      }
+
+      .groups & {
+        background-color: #0089bb;
+      }
+
+      .groups &:hover {
+        background-color: #64b9d8;
+      }
+    }
+  }
+
+  .panel-body {
+    border: 0 !important;
+  }
+}
+
