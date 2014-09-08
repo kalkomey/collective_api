@@ -20,7 +20,7 @@
       ng-click    = "selectGroup(membership.group)"
     >
       {{ membership.group.category | capitalize}}: {{ membership.group.name }}
-      <button class="btn btn-link" ng-click="breakMembership(membership)">&#x2715;</button>
+      <button class="btn-link" ng-click="breakMembership(membership)">&#x2715;</button>
       <span ng-if="membership.group.coordinator">&#x2605;</span>
     </li>
   </ol>

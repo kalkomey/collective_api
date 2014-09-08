@@ -1,7 +1,7 @@
 <accordion-group is-open="true">
 
   <accordion-heading>
-    {{group.category}}: {{group.name}}
+    {{group.category | capitalize}}: {{group.name}}
     <button class="btn btn-link pull-right" ng-click="deselect(group)">Hide</button>
   </accordion-heading>
 

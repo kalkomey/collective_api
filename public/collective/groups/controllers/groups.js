@@ -43,18 +43,17 @@ angular.module('Collective')
     $scope.saveNew = function() {
 
       // create a copy so we can get rid of $scope.group ASAP
-      var model = Restangular.copy($scope.group);
-
-      Group.post({name: model.name, category_id: model.category.id, description: ''});
-
-      $scope.groups.push({name: model.name, category: model.category.name});
+      var model   = angular.copy($scope.group),
+          promise = Group.post({name: model.name, category_id: model.category.id, description: ''});
 
       delete $scope.group;
+
+      $scope.groups.push(promise.$object);
     };
 
     // flags a groups as selected
     $scope.select = function(group) {
-console.log(group.id);
+
       group.selected = true;
     };
   })

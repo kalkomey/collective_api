@@ -1,8 +1,6 @@
-<div class="col-md-6" ng-class="groups-view" id="groups">
+<div class="col-md-6 categories" ng-class="groups-view">
 
-  <div class="col-md-12 categories">
-
-    <accordion close-others="true">
+  <accordion close-others="true">
 
       <accordion-group is-open="true">
         <accordion-heading>All Groups</accordion-heading>
@@ -37,5 +35,4 @@
 
       <group ng-repeat="group in groups | filter:{ selected: true } | orderBy: 'category'" />
     </accordion>
-  </div>
 </div>

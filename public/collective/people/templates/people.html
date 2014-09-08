@@ -1,6 +1,4 @@
-<div class="col-md-6" ng-class="people-view" id="people">
-
-  <div class="col-md-12 categories">
+<div class="col-md-6 categories" ng-class="people-view">
 
     <accordion close-others="true">
 
@@ -36,5 +34,5 @@
 
       <person ng-repeat="person in people | filter:{ selected: true } | orderBy: 'name'" />
     </accordion>
-  </div>
+
 </div>

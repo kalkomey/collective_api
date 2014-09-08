@@ -1,13 +1,10 @@
-#people{
-	background: #607d91;
-}
-
-#groups{
-	background: #8DA78F;
+.navbar {
+  margin: 0;
+  border: 0;
 }
 
 .categories{
-	padding: 2rem;
+  padding: 0;
 
 	ol, .form-wrap{
 		width: 100%;
@@ -20,10 +17,7 @@
 		margin-top: 1rem;
 		margin-bottom: 0;
 		padding-top: 1rem;
-		border-bottom: 1px solid rgba(214, 214, 214, 0.63);
 	}
-
-	
 
 	h1{
 		margin-top: 0;
@@ -40,7 +34,6 @@
 
 	}
 
-
 	.form-wrap{
 		.btn-link{
 			color: @dangerColor;
@@ -49,14 +42,11 @@
 }
 
 // styles the <li>s in the ol or ul to look like little interactive tags. S'cute!
-.taggy-items{ 
-	li{
+.taggy-items{
+
+  li{
 		float: left;
-		border: 0;
-		padding-top: .25rem;
-		padding-right:.25rem;
-		padding-bottom: .25rem;
-		padding-left: 1.5rem;
+		padding: 0.25rem 1rem 0.3rem 0.75rem;
 		margin: .5rem;
 		background: @textureImg;
 		border: 1px solid #6B6B6B;
@@ -65,28 +55,34 @@
 		overflow: hidden;
 		cursor: move;
 
-		&:before, &:after{
-			content: '';
-			position: absolute;
-			left: -0.25rem;
-			font-size: 3rem;
-			width: 1.5rem;
-			height: 0.5rem;
-			border-bottom: 1px solid #b4b4b4;
-			border-top: 1px solid #b4b4b4;
-		}
+    &.ui-draggable {
+      padding-left: 1.75rem;
 
-		&:before{
-			top: 1rem;
-		}
+      &:before, &:after{
+        content: '';
+        position: absolute;
+        left: -0.25rem;
+        font-size: 3rem;
+        width: 1.5rem;
+        height: 0.5rem;
+        border-bottom: 1px solid #b4b4b4;
+        border-top: 1px solid #b4b4b4;
+      }
 
-		&:after{
-			top: 1.75rem;
-		}
+      &:before{
+        top: 0.75rem;
+      }
+
+      &:after{
+        top: 1.5rem;
+      }
+    }
 
 		.btn-link{
 			color: @dangerColor;
 			text-decoration: none;
+      padding: 0;
+      margin-left: 0.5rem;
 
 			&:hover{
 				color: #222;
@@ -95,7 +91,6 @@
 	}
 
 	.btn{
-		padding: .25rem .5rem;
 		cursor: pointer;
 	}
 }

@@ -22,7 +22,6 @@ angular
         },
         addMembership: function(membership) {
 
-          // TODO make this accept a raw membership
           Membership.post(membership);
 
           membership.person = _.findWhere(PeopleContext.people, {id: membership.employee_id});
