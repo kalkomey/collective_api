@@ -24,6 +24,7 @@ angular.module('Collective')
     $scope.selectPerson = function(person) {
 
       person.selected = true;
+      person.open = true;
     };
 
     // add a person to the group

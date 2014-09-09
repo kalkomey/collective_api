@@ -2,7 +2,8 @@
 
     <accordion close-others="true">
 
-      <accordion-group is-open="true">
+      <accordion-group is-open="status.openFirst" is-disabled="status.openFirst">
+
         <accordion-heading>All People</accordion-heading>
         <button class="btn btn-primary add-person" ng-if="!person" ng-click="new()">+</button>
 
@@ -27,7 +28,7 @@
           class               = "btn btn-default"
           ng-click            = "select(person)"
         >
-          {{ person.name }}
+          {{person.name}}
           </li>
         </ol>
       </accordion-group>

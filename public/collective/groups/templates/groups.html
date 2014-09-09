@@ -2,7 +2,7 @@
 
   <accordion close-others="true">
 
-      <accordion-group is-open="true">
+      <accordion-group is-open="status.openFirst" is-disabled="status.openFirst">
         <accordion-heading>All Groups</accordion-heading>
         <button class="btn btn-primary add-groups" ng-if="!group" ng-click="new()">+</button>
 

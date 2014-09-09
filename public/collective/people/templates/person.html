@@ -1,4 +1,4 @@
-<accordion-group is-open="true">
+<accordion-group is-open="person.open">
 
   <accordion-heading>
     {{person.name}}
@@ -19,7 +19,7 @@
       class       = "btn btn-default"
       ng-click    = "selectGroup(membership.group)"
     >
-      {{ membership.group.category | capitalize}}: {{ membership.group.name }}
+      {{membership.group.category | capitalize}}: {{ membership.group.name }}
       <button class="btn-link" ng-click="breakMembership(membership)">&#x2715;</button>
       <span ng-if="membership.group.coordinator">&#x2605;</span>
     </li>

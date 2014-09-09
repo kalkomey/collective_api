@@ -3,6 +3,17 @@ angular.module('Collective')
   // controls the main people panel
   .controller('PeopleController', function($scope, PeopleContext, MembershipsContext, Person, Restangular) {
 
+    $scope.status = {openFirst: true};
+
+    // listen to the collection for any changes
+    $scope.$watch('people', function() {
+
+      // when this changes, there should only ever be one entry
+      var isOpenPerson  = _.findWhere($scope.people, {open: true});
+
+      $scope.status.openFirst = ! isOpenPerson;
+    }, true);
+
     // initialize a new person
     $scope.new = function(){
 
@@ -19,6 +30,7 @@ angular.module('Collective')
     $scope.deselect = function(person) {
 
       person.selected = false;
+      person.open = false;
     };
 
     // delete a person
@@ -46,7 +58,8 @@ angular.module('Collective')
     // flag a person as selected
     $scope.select = function(person) {
 
-      person.selected = true;
+      person.selected  = true;
+      person.open      = true;
     };
   })
 
