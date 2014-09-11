@@ -1,0 +1,27 @@
+<accordion-group is-open="person.open">
+
+  <accordion-heading>
+    {{person.name}}
+    <small ng-if="person.title">{{person.title}}</small>
+    <button class="btn btn-link pull-right" ng-click="deselect(person)">Hide</button>
+  </accordion-heading>
+
+  <ol
+    class               = "list-unstyled taggy-items"
+    jqyoui-droppable
+    data-drop           = "true"
+    data-jqyoui-options = "{accept: '[ng-model=group]'}"
+    ng-model            = "droppedGroups"
+  >
+    <li
+      data-id     = "{{ membership.id }}"
+      ng-repeat   = "membership in memberships | filter: {employee_id: person.id}: true"
+      class       = "btn btn-default"
+      ng-click    = "selectGroup(membership.group)"
+    >
+      {{membership.group.category | capitalize}}: {{ membership.group.name }}
+      <button class="btn-link" ng-click="breakMembership(membership)">&#x2715;</button>
+      <span ng-if="membership.group.coordinator">&#x2605;</span>
+    </li>
+  </ol>
+</accordion-group>
