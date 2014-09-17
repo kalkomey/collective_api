@@ -2,23 +2,20 @@ angular
   .module('Collective')
     .factory('MembershipsContext', function(Membership, PeopleContext, GroupsContext) {
 
-      var memberships,
-          promise       = Membership.getList().then(function($object) {
-
-                            memberships = $object;
-                          });
+      var promise = Membership.getList();
 
       return {
         promise: promise,
+        memberships: promise.$object,
         extendMemberships: function() {
 
-          _.each(memberships, function(membership) {
+          _.each(this.memberships, function(membership) {
 
             membership.person = _.findWhere(PeopleContext.people, {id: membership.employee_id});
             membership.group  = _.findWhere(GroupsContext.groups, {id: membership.group_id});
           });
 
-          return memberships;
+          return this.memberships;
         },
         addMembership: function(membership) {
 
@@ -27,15 +24,15 @@ angular
           membership.person = _.findWhere(PeopleContext.people, {id: membership.employee_id});
           membership.group  = _.findWhere(GroupsContext.groups, {id: membership.group_id});
 
-          memberships.push(membership);
+          this.memberships.push(membership);
         },
         breakMembership: function(membership) {
 
           Membership.customDELETE('destroy', {group_id: membership.group_id, employee_id: membership.employee_id});
 
-          var index = memberships.indexOf(membership);
+          var index = this.memberships.indexOf(membership);
 
-          memberships.splice(index, 1);
+          this.memberships.splice(index, 1);
         }
       };
     });

@@ -2,9 +2,13 @@ angular
   .module('Collective')
     .factory('PeopleContext', function(Person) {
 
-      var people = Person.getList().$object;
+      var promise = Person.getList();
 
       return {
-        people: people
+        promise: promise,
+        people: promise.$object
       };
+      // var people = Person.getList().$object;
+
+      // return people;
     });
