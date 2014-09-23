@@ -2,10 +2,11 @@ angular
   .module('Collective')
     .factory('GroupsContext', function(Group) {
 
-      var groups = Group.getList().$object;
+      var promise = Group.getList();
 
       return {
-        groups: groups,
+        promise: promise,
+        groups: promise.$object,
         search: function(query) {
 
           groups = Group.customGET('search', query).$object;

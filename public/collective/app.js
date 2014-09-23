@@ -9,14 +9,23 @@ angular.module('Collective', ['ui.bootstrap', 'ui.utils', 'ui.router', 'restangu
     $stateProvider
       .state('app', {
         abstract: true,
-        controller: function($scope, PeopleContext, GroupsContext, MembershipsContext) {
+        controller: function($scope, people, groups, MembershipsContext) {
 
-          $scope.people       = PeopleContext.people;
-          $scope.groups       = GroupsContext.groups;
+          $scope.people       = people;
+          $scope.groups       = groups;
           $scope.memberships  = MembershipsContext.extendMemberships();
         },
         resolve: {
-          'MyServiceData': function(MembershipsContext) {
+          people: function(PeopleContext) {
+
+            return PeopleContext.promise;
+          },
+          groups: function(GroupsContext) {
+
+            return GroupsContext.promise;
+          },
+          memberships: function(MembershipsContext) {
+
             return MembershipsContext.promise;
           }
         }
