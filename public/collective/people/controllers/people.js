@@ -1,7 +1,7 @@
 angular.module('Collective')
 
   // controls the main people panel
-  .controller('PeopleController', function($scope, PeopleContext, MembershipsContext, Person, Restangular) {
+  .controller('PeopleController', function($scope, PeopleContext, MembershipsContext, Restangular) {
 
     $scope.status = {openFirst: true};
 
@@ -33,26 +33,14 @@ angular.module('Collective')
       person.open = false;
     };
 
-    // delete a person
-    $scope.remove = function(person) {
-
-      person
-        .remove()
-          .then(function() {
-
-            $scope.people = _.without($scope.people, person);
-          });
-    };
-
     // save a person
     $scope.saveNew = function() {
 
-      var model   = angular.copy($scope.person),
-          promise = Person.post(model);
+      var newPerson = angular.copy($scope.person);
+
+      PeopleContext.addPerson(newPerson);
 
       delete $scope.person;
-
-      $scope.people.push(promise.$object);
     };
 
     // flag a person as selected

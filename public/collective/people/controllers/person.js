@@ -1,7 +1,7 @@
 angular.module('Collective')
 
   // controls individual person panels
-  .controller('PersonController', function($scope, GroupsContext, MembershipsContext, Person, Membership) {
+  .controller('PersonController', function($scope, MembershipsContext, PeopleContext) {
 
     $scope.droppedGroups = [];
 
@@ -19,6 +19,22 @@ angular.module('Collective')
 
       $scope.droppedGroups = [];
     });
+
+    // delete a person
+    $scope.remove = function(person) {
+
+      // remove all of this person's memberships
+      _.each($scope.memberships, function(membership) {
+
+        if (membership.employee_id === person.id) {
+
+          MembershipsContext.breakMembership(membership);
+        }
+      });
+
+      // delete the person
+      PeopleContext.removePerson(person);
+    };
 
     // select a group
     $scope.selectGroup  = function(group) {

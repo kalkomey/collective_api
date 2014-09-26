@@ -24,6 +24,8 @@ angular
           membership.person = _.findWhere(PeopleContext.people, {id: membership.employee_id});
           membership.group  = _.findWhere(GroupsContext.groups, {id: membership.group_id});
 
+          console.log(membership);
+
           this.memberships.push(membership);
         },
         breakMembership: function(membership) {

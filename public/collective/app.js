@@ -9,10 +9,10 @@ angular.module('Collective', ['ui.bootstrap', 'ui.utils', 'ui.router', 'restangu
     $stateProvider
       .state('app', {
         abstract: true,
-        controller: function($scope, people, groups, MembershipsContext) {
+        controller: function($scope, PeopleContext, GroupsContext, MembershipsContext) {
 
-          $scope.people       = people;
-          $scope.groups       = groups;
+          $scope.people       = PeopleContext.people;
+          $scope.groups       = GroupsContext.groups;
           $scope.memberships  = MembershipsContext.extendMemberships();
         },
         resolve: {

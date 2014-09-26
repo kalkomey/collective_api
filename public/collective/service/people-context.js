@@ -6,9 +6,20 @@ angular
 
       return {
         promise: promise,
-        people: promise.$object
-      };
-      // var people = Person.getList().$object;
+        people: promise.$object,
+        addPerson: function(person) {
 
-      // return people;
+          var promise = Person.post(person);
+
+          this.people.push(promise.$object);
+        },
+        removePerson: function(person) {
+
+          person.remove();
+
+          var index = this.people.indexOf(person);
+
+          this.people.splice(index, 1);
+        }
+      };
     });
