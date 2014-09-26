@@ -22,15 +22,13 @@ angular.module('Collective')
 
     // delete a person
     $scope.remove = function(person) {
+      var i = $scope.memberships.length;
 
-      // remove all of this person's memberships
-      _.each($scope.memberships, function(membership) {
-
-        if (membership.employee_id === person.id) {
-
-          MembershipsContext.breakMembership(membership);
+      while(i--) {
+        if ($scope.memberships[i].employee_id === person.id) {
+          MembershipsContext.breakMembership($scope.memberships[i]);
         }
-      });
+      }
 
       // delete the person
       PeopleContext.removePerson(person);
